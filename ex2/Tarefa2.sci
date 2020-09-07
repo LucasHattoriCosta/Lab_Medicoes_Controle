@@ -14,12 +14,12 @@ xdel( winsid() )
 
 pi = %pi
 
-[y_C_o_f,Fs_C_o_f,bits_C_o_f]=wavread('C:\Users\Usuario\Documents\GitHub\Lab_Medicoes_2\ex2\Sons\Caique_o_fechado.wav')
-[y_C_o_a,Fs_C_o_a,bits_C_o_a]=wavread('C:\Users\Usuario\Documents\GitHub\Lab_Medicoes_2\ex2\Sons\Caique_o_aberto.wav')
-[y_C_a_a,Fs_C_a_a,bits_C_a_a]=wavread('C:\Users\Usuario\Documents\GitHub\Lab_Medicoes_2\ex2\Sons\Caique_a_aberto.wav')
-[y_C_a_f,Fs_C_a_f,bits_C_a_f]=wavread('C:\Users\Usuario\Documents\GitHub\Lab_Medicoes_2\ex2\Sons\Caique_a_fechado.wav')
-[y_Ha_a_a,Fs_Ha_a_a,bits_Ha_a_a]=wavread('C:\Users\Usuario\Documents\GitHub\Lab_Medicoes_2\ex2\Sons\Hatta_A_aberto.wav')
-
+[y_C_o_f,Fs_C_o_f,bits_C_o_f]=wavread('.\Sons\Caique_o_fechado.wav')
+[y_C_o_a,Fs_C_o_a,bits_C_o_a]=wavread('.\Sons\Caique_o_aberto.wav')
+[y_C_a_a,Fs_C_a_a,bits_C_a_a]=wavread('.\Sons\Caique_a_aberto.wav')
+[y_C_a_f,Fs_C_a_f,bits_C_a_f]=wavread('.\Sons\Caique_a_fechado.wav')
+[y_Ha_a_a,Fs_Ha_a_a,bits_Ha_a_a]=wavread('.\Sons\Hatta_A_aberto.wav')
+//
 scf(0)
 plot(y_C_o_f)
 title('O fechado')
