@@ -471,7 +471,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // 5º Ensaio: 1,597 Hz
 // 
 // Assim, a frequência natural média foi de 1,597 +/- 0,001 Hz, valor 
-// muito próximo ao que encontrado analisando o sinal em função do tempo
+// muito próximo ao encontrado analisando o sinal em função do tempo
 // (1,63 +/- 0,01 Hz), com uma diferença de 0,03 Hz. 
 // 
 //-------------------------- Conclusão ---------------------------
