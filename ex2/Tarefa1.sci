@@ -42,7 +42,7 @@ cm5_3 = csvRead('.\dados_tarefa_1\5cm\5cm_3.csv')
 [linha3, coluna3] = size(cm5_3)
 cm5_4 = csvRead('.\dados_tarefa_1\5cm\5cm_4.csv')
 [linha4, coluna4] = size(cm5_4)
-cm5_5 = csvRead('.  \dados_tarefa_1\5cm\5cm_5.csv')
+cm5_5 = csvRead('.\dados_tarefa_1\5cm\5cm_5.csv')
 [linha5, coluna5] = size(cm5_5)
 
 scf(1)
