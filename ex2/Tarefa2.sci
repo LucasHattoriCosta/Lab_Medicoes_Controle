@@ -17,6 +17,7 @@ clear
 xdel( winsid() )
 
 pi = %pi
+rate = 44000 //Hz (taxa de amostragem)
 
 // código abaixo veio da documentacao da funcao fft() e foi implementado
 // na forma de função.
@@ -62,7 +63,10 @@ plot(y_Ha_a_a,x,2)
 plot(y_He_a_a,x,3)
 plot(y_Pi_a_a,x,4)
 plot(y_Pk_a_a,x,5)
-title('A aberto')
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Heitor';'Paiva'])
+title(['Espectro de frequência - E aberto'])
 
 scf(1)
 plot(y_C_e_a,x,1)
@@ -86,18 +90,68 @@ title('O aberto')
 
 //---------------- Espectros de Frequência dos Sinais ------------------
 
-[U_5_1, frequency_vector_5_1, n_5_1] = transformada(cm5_1(2:linha1,4),rate)
-[U_5_2, frequency_vector_5_2, n_5_2] = transformada(cm5_2(2:linha2,4),rate)
-[U_5_3, frequency_vector_5_3, n_5_3] = transformada(cm5_3(2:linha3,4),rate)
-[U_5_4, frequency_vector_5_4, n_5_4] = transformada(cm5_4(2:linha4,4),rate)
-[U_5_5, frequency_vector_5_5, n_5_5] = transformada(cm5_5(2:linha5,4),rate)
+[U_C_aa, frequency_vector_C_aa, n_C_aa] = transformada(y_C_a_a,rate)
+[U_C_ea, frequency_vector_C_ea, n_C_ea] = transformada(y_C_e_a,rate)
+[U_C_ia, frequency_vector_C_ia, n_C_ia] = transformada(y_C_i_a,rate)
+[U_C_oa, frequency_vector_C_oa, n_C_oa] = transformada(y_C_o_a,rate)
+
+[U_Ha_aa, frequency_vector_Ha_aa, n_Ha_aa] = transformada(y_Ha_a_a,rate)
+[U_Ha_oa, frequency_vector_Ha_oa, n_Ha_oa] = transformada(y_Ha_o_a,rate)
+
+[U_He_aa, frequency_vector_He_aa, n_He_aa] = transformada(y_He_a_a,rate)
+[U_He_ea, frequency_vector_He_ea, n_He_ea] = transformada(y_He_e_a,rate)
+[U_He_ia, frequency_vector_He_ia, n_He_ia] = transformada(y_He_i_a,rate)
+[U_He_oa, frequency_vector_He_oa, n_He_oa] = transformada(y_He_o_a,rate)
+
+[U_Pi_aa, frequency_vector_Pi_aa, n_Pi_aa] = transformada(y_Pi_a_a,rate)
+[U_Pi_ea, frequency_vector_Pi_ea, n_Pi_ea] = transformada(y_Pi_e_a,rate)
+[U_Pi_ia, frequency_vector_Pi_ia, n_Pi_ia] = transformada(y_Pi_i_a,rate)
+[U_Pi_oa, frequency_vector_Pi_oa, n_Pi_oa] = transformada(y_Pi_o_a,rate)
+
+[U_Pk_aa, frequency_vector_Pk_aa, n_Pk_aa] = transformada(y_Pk_a_a,rate)
+
+scf(3)
+plot2d(frequency_vector_C_aa,abs(U_C_aa(1:n_C_aa)),1)
+plot2d(frequency_vector_Ha_aa,abs(U_Ha_aa(1:n_Ha_aa)),2)
+plot2d(frequency_vector_He_aa,abs(U_He_aa(1:n_He_aa)),3)
+plot2d(frequency_vector_Pi_aa,abs(U_Pi_aa(1:n_Pi_aa)),4)
+plot2d(frequency_vector_Pk_aa,abs(U_Pk_aa(1:n_Pk_aa)),5)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Hattori';'Heitor';'Paiva';'Pavelski'])
+title(['Espectro de frequência - A aberto'])
+
+scf(4)
+plot2d(frequency_vector_C_ea,abs(U_C_ea(1:n_C_aa)),1)
+plot2d(frequency_vector_He_ea,abs(U_He_ea(1:n_He_aa)),3)
+plot2d(frequency_vector_Pi_ea,abs(U_Pi_ea(1:n_Pi_aa)),4)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Heitor';'Paiva'])
+title(['Espectro de frequência - E aberto'])
+
+scf(5)
+plot2d(frequency_vector_C_ia,abs(U_C_ia(1:n_C_ia)),1)
+plot2d(frequency_vector_He_ia,abs(U_He_ia(1:n_He_ia)),3)
+plot2d(frequency_vector_Pi_ia,abs(U_Pi_ia(1:n_Pi_ia)),4)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Heitor';'Paiva'])
+title(['Espectro de frequência - I aberto'])
+
+scf(6)
+plot2d(frequency_vector_C_oa,abs(U_C_oa(1:n_C_oa)),1)
+plot2d(frequency_vector_Ha_oa,abs(U_Ha_oa(1:n_Ha_oa)),2)
+plot2d(frequency_vector_He_oa,abs(U_He_oa(1:n_He_oa)),3)
+plot2d(frequency_vector_Pi_oa,abs(U_Pi_oa(1:n_Pi_oa)),4)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Hattori';'Heitor';'Paiva'])
+title(['Espectro de frequência - O aberto'])
 
 scf(2)
 subplot(321)
 plot2d(frequency_vector_5_1,abs(U_5_1(1:n_5_1)),2)
-xlabel('Frequência (Hz)')
-ylabel('Amplitude')
-title(['Espectro de frequência - régua de 5 cm - 1º ensaio'])
 
 subplot(322)
 plot2d(frequency_vector_5_2,abs(U_5_2(1:n_5_2)),2)
@@ -144,4 +198,86 @@ title(['Espectro de frequência - de 5 cm - 5º ensaio'])
 [y_Ha_o_f,Fs_Ha_o_f,bits_Ha_o_f]=wavread('.\Sons\Hatta_O_fechado.wav')
 [y_He_o_f,Fs_He_o_f,bits_He_o_f]=wavread('.\Sons\Heitor_o_fechado.wav')
 [y_Pi_o_f,Fs_Pi_o_f,bits_Pi_o_f]=wavread('.\Sons\Paiva_ofechado.wav')
+
+scf(0)
+plot(y_C_a_f,x,1)
+plot(y_He_a_f,x,3)
+plot(y_Pi_a_f,x,4)
+plot(y_Pk_a_f,x,5)
+title('A fechado')
+
+scf(1)
+plot(y_C_e_a,x,1)
+plot(y_He_e_a,x,2)
+plot(y_Pi_e_a,x,3)
+title('E fechado')
+
+scf(3)
+plot(y_C_o_a,x,1)
+plot(y_Ha_o_a,x,2)
+plot(y_He_o_a,x,3)
+plot(y_Pi_o_a,x,4)
+title('O fechado')
+
+
+//---------------- Espectros de Frequência dos Sinais ------------------
+
+[U_C_aa, frequency_vector_C_aa, n_C_aa] = transformada(y_C_a_a,rate)
+[U_C_ea, frequency_vector_C_ea, n_C_ea] = transformada(y_C_e_a,rate)
+[U_C_ia, frequency_vector_C_ia, n_C_ia] = transformada(y_C_i_a,rate)
+[U_C_oa, frequency_vector_C_oa, n_C_oa] = transformada(y_C_o_a,rate)
+
+[U_Ha_aa, frequency_vector_Ha_aa, n_Ha_aa] = transformada(y_Ha_a_a,rate)
+[U_Ha_oa, frequency_vector_Ha_oa, n_Ha_oa] = transformada(y_Ha_o_a,rate)
+
+[U_He_aa, frequency_vector_He_aa, n_He_aa] = transformada(y_He_a_a,rate)
+[U_He_ea, frequency_vector_He_ea, n_He_ea] = transformada(y_He_e_a,rate)
+[U_He_ia, frequency_vector_He_ia, n_He_ia] = transformada(y_He_i_a,rate)
+[U_He_oa, frequency_vector_He_oa, n_He_oa] = transformada(y_He_o_a,rate)
+
+[U_Pi_aa, frequency_vector_Pi_aa, n_Pi_aa] = transformada(y_Pi_a_a,rate)
+[U_Pi_ea, frequency_vector_Pi_ea, n_Pi_ea] = transformada(y_Pi_e_a,rate)
+[U_Pi_ia, frequency_vector_Pi_ia, n_Pi_ia] = transformada(y_Pi_i_a,rate)
+[U_Pi_oa, frequency_vector_Pi_oa, n_Pi_oa] = transformada(y_Pi_o_a,rate)
+
+[U_Pk_aa, frequency_vector_Pk_aa, n_Pk_aa] = transformada(y_Pk_a_a,rate)
+
+scf(3)
+plot2d(frequency_vector_C_aa,abs(U_C_aa(1:n_C_aa)),1)
+plot2d(frequency_vector_Ha_aa,abs(U_Ha_aa(1:n_Ha_aa)),2)
+plot2d(frequency_vector_He_aa,abs(U_He_aa(1:n_He_aa)),3)
+plot2d(frequency_vector_Pi_aa,abs(U_Pi_aa(1:n_Pi_aa)),4)
+plot2d(frequency_vector_Pk_aa,abs(U_Pk_aa(1:n_Pk_aa)),5)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Hattori';'Heitor';'Paiva';'Pavelski'])
+title(['Espectro de frequência - A aberto'])
+
+scf(4)
+plot2d(frequency_vector_C_ea,abs(U_C_ea(1:n_C_aa)),1)
+plot2d(frequency_vector_He_ea,abs(U_He_ea(1:n_He_aa)),3)
+plot2d(frequency_vector_Pi_ea,abs(U_Pi_ea(1:n_Pi_aa)),4)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Heitor';'Paiva'])
+title(['Espectro de frequência - E aberto'])
+
+scf(5)
+plot2d(frequency_vector_C_ia,abs(U_C_ia(1:n_C_ia)),1)
+plot2d(frequency_vector_He_ia,abs(U_He_ia(1:n_He_ia)),3)
+plot2d(frequency_vector_Pi_ia,abs(U_Pi_ia(1:n_Pi_ia)),4)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Heitor';'Paiva'])
+title(['Espectro de frequência - I aberto'])
+
+scf(6)
+plot2d(frequency_vector_C_oa,abs(U_C_oa(1:n_C_oa)),1)
+plot2d(frequency_vector_Ha_oa,abs(U_Ha_oa(1:n_Ha_oa)),2)
+plot2d(frequency_vector_He_oa,abs(U_He_oa(1:n_He_oa)),3)
+plot2d(frequency_vector_Pi_oa,abs(U_Pi_oa(1:n_Pi_oa)),4)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['Caique';'Hattori';'Heitor';'Paiva'])
+title(['Espectro de frequência - O aberto'])
 
