@@ -13,8 +13,33 @@ clear
 xdel( winsid() )
 
 pi = %pi
+
+//============================= TAREFA 1 ===============================
+
+//---------------------------- Experimento -----------------------------
+
+// O experimento buscou simular uma viga engastada em balanço com massa
+// na extremidade. Para isso utilizou-se uma régua, que foi fixada em 
+// uma mesa com o auxílio de um grampo sargento e uma borracha. Na outra
+// extremidade, foi fixado um celular iPhone, rodando iOS, que serviu 
+// tanto de peso, quanto de sensor. Assim, o objetivo do experimento é 
+// identificar a frequência natural e o coeficiente de amortecimento do 
+// sistema para três comprimentos diferentes da régua (5, 10 e 20 cm).
+
+// Para isso, gravou-se os sinais de aceleração em z através do aplica-
+// tivo phyphox, cuja a taxa de amostragem é de 100 Hz e é capaz de ex-
+// portar os dados no formato CSV.
+
+// É possível encontrar mais informações do experimento no arquivo
+// "Apresentação_do_experimento.pdf", que contém imagens do aparato mon-
+// tado e informações adicionais.
+
+//------------------------- Dados do Experimento -----------------------
+
 rate = 100 //Hz (taxa de amostragem)
 
+// código abaixo veio da documentacao da funcao fft() e foi implementado
+// na forma de função.
 function [U, frequency_vector, n] = transformada(sinal,rate)
     U = fft(sinal)
     N = size(sinal,'*')
@@ -202,7 +227,7 @@ xlabel('Frequência (Hz)')
 ylabel('Amplitude')
 title(['Espectro de frequência - régua de 10 cm - 5º ensaio'])
 
-//========= Dados para a régua com 20 cm =========
+//=================== Dados para a régua com 20 cm =====================
 
 cm20_1 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\20cm\20cm_1.csv')
 [linha1, coluna1] = size(cm20_1)
@@ -288,7 +313,7 @@ subplot(325)
 plot2d(frequency_vector_20_5,abs(U_20_5(1:n_20_5)),2)
 xlabel('Frequência (Hz)')
 ylabel('Amplitude')
-title(['Espectro de frequência - a régua de 20 cm - 5º ensaio'])
+title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 
 
 
