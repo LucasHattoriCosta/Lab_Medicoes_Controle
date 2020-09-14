@@ -51,15 +51,15 @@ endfunction
 
 //-------------------- Sinais em Função do Tempo -----------------------
 
-cm5_1 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_1.csv')
+cm5_1 = csvRead('.\dados_tarefa_1\5cm\5cm_1.csv')
 [linha1, coluna1] = size(cm5_1)
-cm5_2 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_2.csv')
+cm5_2 = csvRead('.\dados_tarefa_1\5cm\5cm_2.csv')
 [linha2, coluna2] = size(cm5_2)
-cm5_3 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_3.csv')
+cm5_3 = csvRead('.\dados_tarefa_1\5cm\5cm_3.csv')
 [linha3, coluna3] = size(cm5_3)
-cm5_4 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_4.csv')
+cm5_4 = csvRead('.\dados_tarefa_1\5cm\5cm_4.csv')
 [linha4, coluna4] = size(cm5_4)
-cm5_5 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_5.csv')
+cm5_5 = csvRead('.  \dados_tarefa_1\5cm\5cm_5.csv')
 [linha5, coluna5] = size(cm5_5)
 
 scf(1)
