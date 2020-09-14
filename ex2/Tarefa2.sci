@@ -18,6 +18,14 @@ xdel( winsid() )
 
 pi = %pi
 
+// código abaixo veio da documentacao da funcao fft() e foi implementado
+// na forma de função.
+function [U, frequency_vector, n] = transformada(sinal,rate)
+    U = fft(sinal)
+    N = size(sinal,'*')
+    frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
+    n = size(frequency_vector,'*')
+endfunction
 
 //Dados dos sons abertos
 //-------------------- Sinais em Função do Tempo -----------------------
@@ -50,55 +58,31 @@ disp(x)
 
 scf(0)
 plot(y_C_a_a,x,1)
+plot(y_Ha_a_a,x,2)
+plot(y_He_a_a,x,3)
+plot(y_Pi_a_a,x,4)
+plot(y_Pk_a_a,x,5)
 title('A aberto')
 
 scf(1)
-plot(y_C_o_f,x,1)
+plot(y_C_e_a,x,1)
+plot(y_He_e_a,x,2)
+plot(y_Pi_e_a,x,3)
 title('E aberto')
 
 scf(2)
-plot(y_C_o_f,x,1)
+plot(y_C_i,x,1)
+plot(y_He_i,x,2)
+plot(y_Pi_i,x,3)
 title('I aberto')
 
 scf(3)
-plot(y_C_o_f,x,1)
+plot(y_C_o_a,x,1)
+plot(y_Ha_o_a,x,2)
+plot(y_He_o_a,x,3)
+plot(y_Pi_o_a,x,4)
 title('O aberto')
 
-
-scf(1)
-plot(cm5_1(2:linha1,1),cm5_1(2:linha1,4))
-title("Sinal para régua com 5 cm - 1º ensaio")
-set(gca(),"data_bounds",matrix([0,10,-12,12],2,-1))
-xlabel("Tempo (s)")
-ylabel("Aceleração (m/s^2)")
-
-subplot(322)
-plot(cm5_2(2:linha2,1),cm5_2(2:linha2,4))
-title("Sinal para régua com 5 cm - 2º ensaio")
-set(gca(),"data_bounds",matrix([0,10,-12,12],2,-1))
-xlabel("Tempo (s)")
-ylabel("Aceleração (m/s^2)")
-
-subplot(323)
-plot(cm5_3(2:linha3,1),cm5_3(2:linha3,4))
-title("Sinal para régua com 5 cm - 3º ensaio")
-set(gca(),"data_bounds",matrix([0,10,-12,12],2,-1))
-xlabel("Tempo (s)")
-ylabel("Aceleração (m/s^2)")
-
-subplot(324)
-plot(cm5_4(2:linha4,1),cm5_4(2:linha4,4))
-title("Sinal para régua com 5 cm - 4º ensaio")
-set(gca(),"data_bounds",matrix([0,10,-12,12],2,-1))
-xlabel("Tempo (s)")
-ylabel("Aceleração (m/s^2)")
-
-subplot(325)
-plot(cm5_5(2:linha5,1),cm5_5(2:linha5,4))
-title("Sinal para régua com 5 cm - 5º ensaio")
-set(gca(),"data_bounds",matrix([0,10,-12,12],2,-1))
-xlabel("Tempo (s)")
-ylabel("Aceleração (m/s^2)")
 
 //---------------- Espectros de Frequência dos Sinais ------------------
 
