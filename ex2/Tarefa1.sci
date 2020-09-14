@@ -316,6 +316,92 @@ ylabel('Amplitude')
 title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 
 
+//============================= RELATÓRIO ==============================
+
+//--------------------------- Régua com 5 cm ---------------------------
+
+// A Janela gráfica número 1 mostra os cinco sinais referente à aquisi-
+// ção de dados de aceleração para a régua com comprimento livre de 5 cm. 
+// Nota-se de prontidão que os sinais têm frequências parecidas, além de
+// amplitudes iniciais parecidas, com excessão do 1º ensaio. Porém, como
+// o objetivo é mensurar a frequência de vibração e o coeficiente de 
+// amortecimento, a variação inicial na amplitude inicial não importa
+// tanto.
+// 
+// Com o sinal descrito no tempo (Janela gráfica número 1), foi possível
+// calcular assim a frequência natural e o oceficiente de amortecimento.
+// 
+// Para o cálculo da frequência, utilizou-se o os dois primeiros picos
+// após o tempo de 5 segundos:
+// 1º Ensaio: 5,29 - 5,09 = 0,2 s -> 5 Hz;
+// 2º Ensaio: 5,26 - 5,06 = 0,2 s -> 5 Hz;
+// 3º Ensaio: 5,31 - 5,11 = 0,2 s -> 5 Hz;
+// 4º Ensaio: 5,25 - 5,05 = 0,2 s -> 5 Hz;
+// 5º Ensaio: 5,27 - 5,07 = 0,2 s -> 5 Hz;
+// 
+// Portanto, pode-se dizer que a frequência natural é de 5 Hz.
+// 
+// O coeficiente de amortecimento (C) foi calculado da seguinte forma:
+// 
+// C = sqrt(delta^2/(delta^2+(2*pi)^2)), sendo delta = sqrt(y1/y2), onde
+// y1 e y2 são dois picos consecutivos.
+// 
+// 1º Ensaio: y1 = 3,602 e y2 = 3,471 -> C = 0,0059
+// 2º Ensaio: y1 = 3,031 e y2 = 2,944 -> C = 0,0046
+// 3º Ensaio: y1 = 3,418 e y2 = 3,272 -> C = 0,0069
+// 4º Ensaio: y1 = 3,336 e y2 = 3,240 -> C = 0,0046
+// 5º Ensaio: y1 = 3,093 e y2 = 2,983 -> C = 0,0058
+// 
+// Assim, o coeficiente de amortecimento médio foi de 0,006 +/- 0,001.
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+// 
+
+
 
 
 
