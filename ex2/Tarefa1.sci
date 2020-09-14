@@ -42,7 +42,7 @@ cm5_3 = csvRead('.\dados_tarefa_1\5cm\5cm_3.csv')
 [linha3, coluna3] = size(cm5_3)
 cm5_4 = csvRead('.\dados_tarefa_1\5cm\5cm_4.csv')
 [linha4, coluna4] = size(cm5_4)
-cm5_5 = csvRead('.  \dados_tarefa_1\5cm\5cm_5.csv')
+cm5_5 = csvRead('.\dados_tarefa_1\5cm\5cm_5.csv')
 [linha5, coluna5] = size(cm5_5)
 
 scf(1)
@@ -345,7 +345,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // 
 // O coeficiente de amortecimento (C) foi calculado da seguinte forma:
 // 
-// C = sqrt(delta^2/(delta^2+(2*pi)^2)), sendo delta = sqrt(y1/y2), onde
+// C = sqrt(delta^2/(delta^2+(2*pi)^2)), sendo delta = ln(y1/y2), onde
 // y1 e y2 são dois picos consecutivos.
 // 
 // 1º Ensaio: y1 = 3,602 e y2 = 3,471 -> C = 0,0059
@@ -362,7 +362,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // go do tempo foi maior. Apesar disso, o pico do espectro está aproxi-
 // madamente na mesma frequência para os cinco ensaios.
 // 
-// Assim, as frequências naturais verificada pelo espectro foram:
+// Assim, as frequências naturais verificadas pelo espectro foram:
 // 
 // 1º Ensaio: 4,990 Hz
 // 2º Ensaio: 4,995 Hz
@@ -380,7 +380,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // A Janela gráfica número 3 mostra os cinco sinais referente à aquisi-
 // ção de dados de aceleração para a régua com comprimento livre de 10 cm. 
 // Nota-se de prontidão que os sinais têm frequências parecidas, além de
-// amplitudes iniciais parecidas, com excessão do 4º ensaio. 
+// amplitudes iniciais relativamente próximas.
 // 
 // Com o sinal descrito no tempo (Janela gráfica número 3), foi possível
 // calcular assim a frequência natural e o coeficiente de amortecimento.
@@ -395,10 +395,8 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // 
 // Portanto, a frequência natural é de 2,948 +/- 0,004 Hz.
 // 
-// O coeficiente de amortecimento (C) foi calculado da seguinte forma:
-// 
-// C = sqrt(delta^2/(delta^2+(2*pi)^2)), sendo delta = sqrt(y1/y2), onde
-// y1 e y2 são dois picos consecutivos.
+// O coeficiente de amortecimento (C) foi calculado de maneira análoga 
+// ao caso anterior de 5 cm, resultando nos seguintes valores:
 // 
 // 1º Ensaio: y1 = 4,015 e y2 = 3,826 -> C = 0,0077
 // 2º Ensaio: y1 = 3,672 e y2 = 5,528 -> C = 0,0064
@@ -414,7 +412,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // go do tempo foi maior. Apesar disso, o pico do espectro está aproxi-
 // madamente na mesma frequência para os cinco ensaios.
 // 
-// Assim, as frequências naturais verificada pelo espectro foram:
+// Assim, as frequências naturais verificadas pelo espectro foram:
 // 
 // 1º Ensaio: 2,900 Hz
 // 2º Ensaio: 2,897 Hz
@@ -432,7 +430,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // A Janela gráfica número 5 mostra os cinco sinais referente à aquisi-
 // ção de dados de aceleração para a régua com comprimento livre de 20 cm. 
 // Nota-se de prontidão que os sinais têm frequências parecidas, além de
-// amplitudes iniciais parecidas. 
+// amplitudes iniciais muito próximas. 
 // 
 // Com o sinal descrito no tempo (Janela gráfica número 5), foi possível
 // calcular assim a frequência natural e o coeficiente de amortecimento.
@@ -447,10 +445,8 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // 
 // Portanto, a frequência natural é de 1,63 +/- 0,01 Hz.
 // 
-// O coeficiente de amortecimento (C) foi calculado da seguinte forma:
-// 
-// C = sqrt(delta^2/(delta^2+(2*pi)^2)), sendo delta = sqrt(y1/y2), onde
-// y1 e y2 são dois picos consecutivos.
+// O coeficiente de amortecimento (C) foi calculado de maneira análoga 
+// ao primeiro caso de 5 cm, resultando nos seguintes valores:
 // 
 // 1º Ensaio: y1 = 5,333 e y2 = 4,964 -> C = 0,0114
 // 2º Ensaio: y1 = 5,922 e y2 = 5,574 -> C = 0,0096
@@ -466,7 +462,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // go do tempo foi maior. Apesar disso, o pico do espectro está aproxi-
 // madamente na mesma frequência para os cinco ensaios.
 // 
-// Assim, as frequências naturais verificada pelo espectro foram:
+// Assim, as frequências naturais verificadas pelo espectro foram:
 // 
 // 1º Ensaio: 1,598 Hz
 // 2º Ensaio: 1,595 Hz
@@ -476,25 +472,22 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // 
 // Assim, a frequência natural média foi de 1,597 +/- 0,001 Hz, valor 
 // muito próximo ao que encontrado analisando o sinal em função do tempo
-// (1,63 +/- 0,01 Hz), com uma diferença de 0,03 Hz.
- 
+// (1,63 +/- 0,01 Hz), com uma diferença de 0,03 Hz. 
 // 
+//-------------------------- Conclusão ---------------------------
 // 
+// A partir dos resultados obtidos no experimento descrito e apresentado
+// acima, é possível notar uma consistência relativamente grande nos
+// diferentes ensaios. Apesar de alguns desvios imprevistos, sobretudo
+// nos valores da amplitude inicial, os ensaios se mantiveram consistentes
+// o suficiente para inferir a validade do processo experimental, além de 
+// seus resultados, com uma margem de erro surpreendentemente precisa.
 // 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
+// Dito isso, é interessante ressaltar a surpresa provocada no grupo ao se 
+// verificar o alto grau de precisão e sensibilidade do sensor no aparelho 
+// celular utilizado no experimento. O alto grau de precisão dos resultados 
+// obtidos, além da sensibilidade na captação dos sinais pelo acelerômetro não 
+// eram previstos pelo grupo.
 // 
 // 
 // 
