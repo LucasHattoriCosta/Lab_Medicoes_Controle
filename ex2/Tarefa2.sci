@@ -18,37 +18,7 @@ xdel( winsid() )
 
 pi = %pi
 
-//<<<<<<< HEAD
 
-
-x=[1:size(y_C_o_f)]
-disp(x)
-
-// =======
-[y_C_o_f,Fs_C_o_f,bits_C_o_f]=wavread('.\Sons\Caique_o_fechado.wav')
-[y_C_o_a,Fs_C_o_a,bits_C_o_a]=wavread('.\Sons\Caique_o_aberto.wav')
-[y_C_a_a,Fs_C_a_a,bits_C_a_a]=wavread('.\Sons\Caique_a_aberto.wav')
-[y_C_a_f,Fs_C_a_f,bits_C_a_f]=wavread('.\Sons\Caique_a_fechado.wav')
-[y_Ha_a_a,Fs_Ha_a_a,bits_Ha_a_a]=wavread('.\Sons\Hatta_A_aberto.wav')
-
-//>>>>>>> 8b33faf8ba9e7a65de968ed6c554b38eed326687
-scf(0)
-plot(y_C_o_f,x,1)
-title('O fechado')
-scf(1)
-plot(y_C_o_a,x,1)
-title('O aberto')
-scf(2)
-plot(y_C_a_f,x,1)
-title('A fechado')
-scf(3)
-plot(y_C_a_a,x,1)
-plot(y_Ha_a_a,x,2)
-title('A aberto')
-
-
-[y_C_o_f,Fs_C_o_f,bits_C_o_f]=wavread('.\Sons\Caique_o_fechado.wav')
-[y_C_a_f,Fs_C_a_f,bits_C_a_f]=wavread('.\Sons\Caique_a_fechado.wav')
 //Dados dos sons abertos
 //-------------------- Sinais em Função do Tempo -----------------------
 
@@ -75,19 +45,27 @@ title('A aberto')
 [y_He_o_a,Fs_He_o_a,bits_He_o_a]=wavread('.\Sons\Heitor_o_aberto.wav')
 [y_Pi_o_a,Fs_Pi_o_a,bits_Pi_o_a]=wavread('.\Sons\Paiva_oaberto.wav')
 
-cm5_1 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_1.csv')
-[linha1, coluna1] = size(cm5_1)
-cm5_2 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_2.csv')
-[linha2, coluna2] = size(cm5_2)
-cm5_3 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_3.csv')
-[linha3, coluna3] = size(cm5_3)
-cm5_4 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_4.csv')
-[linha4, coluna4] = size(cm5_4)
-cm5_5 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\5cm\5cm_5.csv')
-[linha5, coluna5] = size(cm5_5)
+x = 1:size(y_C_o_a)
+disp(x)
+
+scf(0)
+plot(y_C_a_a,x,1)
+title('A aberto')
 
 scf(1)
-subplot(321)
+plot(y_C_o_f,x,1)
+title('E aberto')
+
+scf(2)
+plot(y_C_o_f,x,1)
+title('I aberto')
+
+scf(3)
+plot(y_C_o_f,x,1)
+title('O aberto')
+
+
+scf(1)
 plot(cm5_1(2:linha1,1),cm5_1(2:linha1,4))
 title("Sinal para régua com 5 cm - 1º ensaio")
 set(gca(),"data_bounds",matrix([0,10,-12,12],2,-1))
@@ -172,13 +150,14 @@ title(['Espectro de frequência - de 5 cm - 5º ensaio'])
 [y_Pk_a_f,Fs_Pk_a_f,bits_Pk_a_f]=wavread('.\Sons\Pavelski_a_fechado.wav')
 
 //E fechado
-[y_C_e_f,Fs_C_e_f,bits_C_e_f]=wavread('.\Sons\Caique_e_aberto.wav')
-[y_He_e_f,Fs_He_e_f,bits_He_e_f]=wavread('.\Sons\Heitor_e_aberto.wav')
-[y_Pi_e_f,Fs_Pi_e_f,bits_Pi_e_f]=wavread('.\Sons\Paiva_eaberto.wav')
+[y_C_e_f,Fs_C_e_f,bits_C_e_f]=wavread('.\Sons\Caique_e_fechado.wav')
+[y_Ha_e_f,Fs_Ha_e_f,bits_Ha_e_f]=wavread('.\Sons\Hatta_E_fechado.wav')
+[y_He_e_f,Fs_He_e_f,bits_He_e_f]=wavread('.\Sons\Heitor_e_fechado.wav')
+[y_Pi_e_f,Fs_Pi_e_f,bits_Pi_e_f]=wavread('.\Sons\Paiva_efechado.wav')
 
 //O fechado
-[y_C_o_f,Fs_C_o_f,bits_C_o_f]=wavread('.\Sons\Caique_o_aberto.wav')
-[y_Ha_o_f,Fs_Ha_o_f,bits_Ha_o_f]=wavread('.\Sons\Hatta_O_aberto.wav')
-[y_He_o_f,Fs_He_o_f,bits_He_o_f]=wavread('.\Sons\Heitor_o_aberto.wav')
-[y_Pi_o_f,Fs_Pi_o_f,bits_Pi_o_f]=wavread('.\Sons\Paiva_oaberto.wav')
+[y_C_o_f,Fs_C_o_f,bits_C_o_f]=wavread('.\Sons\Caique_o_fechado.wav')
+[y_Ha_o_f,Fs_Ha_o_f,bits_Ha_o_f]=wavread('.\Sons\Hatta_O_fechado.wav')
+[y_He_o_f,Fs_He_o_f,bits_He_o_f]=wavread('.\Sons\Heitor_o_fechado.wav')
+[y_Pi_o_f,Fs_Pi_o_f,bits_Pi_o_f]=wavread('.\Sons\Paiva_ofechado.wav')
 

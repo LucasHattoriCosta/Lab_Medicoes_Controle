@@ -141,15 +141,15 @@ title(['Espectro de frequência - de 5 cm - 5º ensaio'])
 
 //-------------------- Sinais em Função do Tempo -----------------------
 
-cm10_1 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\10cm\10cm_1.csv')
+cm10_1 = csvRead('.\dados_tarefa_1\10cm\10cm_1.csv')
 [linha1, coluna1] = size(cm10_1)
-cm10_2 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\10cm\10cm_2.csv')
+cm10_2 = csvRead('.\dados_tarefa_1\10cm\10cm_2.csv')
 [linha2, coluna2] = size(cm10_2)
-cm10_3 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\10cm\10cm_3.csv')
+cm10_3 = csvRead('.\dados_tarefa_1\10cm\10cm_3.csv')
 [linha3, coluna3] = size(cm10_3)
-cm10_4 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\10cm\10cm_4.csv')
+cm10_4 = csvRead('.\dados_tarefa_1\10cm\10cm_4.csv')
 [linha4, coluna4] = size(cm10_4)
-cm10_5 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\10cm\10cm_5.csv')
+cm10_5 = csvRead('.\dados_tarefa_1\10cm\10cm_5.csv')
 [linha5, coluna5] = size(cm10_5)
 
 scf(3)
@@ -229,15 +229,15 @@ title(['Espectro de frequência - régua de 10 cm - 5º ensaio'])
 
 //=================== Dados para a régua com 20 cm =====================
 
-cm20_1 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\20cm\20cm_1.csv')
+cm20_1 = csvRead('.\dados_tarefa_1\20cm\20cm_1.csv')
 [linha1, coluna1] = size(cm20_1)
-cm20_2 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\20cm\20cm_2.csv')
+cm20_2 = csvRead('.\dados_tarefa_1\20cm\20cm_2.csv')
 [linha2, coluna2] = size(cm20_2)
-cm20_3 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\20cm\20cm_3.csv')
+cm20_3 = csvRead('.\dados_tarefa_1\20cm\20cm_3.csv')
 [linha3, coluna3] = size(cm20_3)
-cm20_4 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\20cm\20cm_4.csv')
+cm20_4 = csvRead('.\dados_tarefa_1\20cm\20cm_4.csv')
 [linha4, coluna4] = size(cm20_4)
-cm20_5 = csvRead('C:\Users\pedro\Documents\GitHub\Lab_Medicoes_Controle\ex2\dados_tarefa_1\20cm\20cm_5.csv')
+cm20_5 = csvRead('.\dados_tarefa_1\20cm\20cm_5.csv')
 [linha5, coluna5] = size(cm20_5)
 
 scf(5)
