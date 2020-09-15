@@ -195,7 +195,7 @@ plot2d(1:(size(y_He_e_f)(2)),y_He_e_f,3)
 plot2d(1:(size(y_Pi_e_f)(2)),y_Pi_e_f,4)
 xlabel('Tempo (s)')
 ylabel('Amplitude')
-legend(['Caique';'Hattori''Heitor';'Paiva'])
+legend(['Caique';'Hattori';'Heitor';'Paiva'])
 title(['Resposta no tempo - E fechado'])
 
 scf(10)
