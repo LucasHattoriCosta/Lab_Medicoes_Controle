@@ -474,7 +474,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // muito próximo ao encontrado analisando o sinal em função do tempo
 // (1,63 +/- 0,01 Hz), com uma diferença de 0,03 Hz. 
 // 
-//-------------------------- Conclusão ---------------------------
+//----------------------------- Conclusão ------------------------------
 // 
 // A partir dos resultados obtidos no experimento descrito e apresentado
 // acima, é possível notar uma consistência relativamente grande nos
@@ -486,7 +486,7 @@ title(['Espectro de frequência - régua de 20 cm - 5º ensaio'])
 // Dito isso, é interessante ressaltar a surpresa provocada no grupo ao se 
 // verificar o alto grau de precisão e sensibilidade do sensor no aparelho 
 // celular utilizado no experimento. O alto grau de precisão dos resultados 
-// obtidos, além da sensibilidade na captação dos sinais pelo acelerômetro não 
+// obtidos, além da sensibilidade na captação dos sinais pelo acelerômetro, não 
 // eram previstos pelo grupo.
 // 
 // 
