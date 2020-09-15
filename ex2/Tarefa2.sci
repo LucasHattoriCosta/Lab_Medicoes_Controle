@@ -36,14 +36,14 @@ endfunction
 [y_Ha_a_a,Fs_Ha_a_a,bits_Ha_a_a]=wavread('.\Sons\Hatta_A_aberto.wav')
 [y_He_a_a,Fs_He_a_a,bits_He_a_a]=wavread('.\Sons\Heitor_a_aberto.wav')
 [y_Pi_a_a,Fs_Pi_a_a,bits_Pi_a_a]=wavread('.\Sons\Paiva_aaberto.wav')
-[y_Pk_a_a,Fs_Pk_a_a,bits_Pk_a_a]=wavread('.\Sons\Pavelski_a_aberto.wav')
+//[y_Pk_a_a,Fs_Pk_a_a,bits_Pk_a_a]=wavread('.\Sons\Pavelski_a_aberto.wav')
 
 //E aberto
 [y_C_e_a,Fs_C_e_a,bits_C_e_a]=wavread('.\Sons\Caique_e_aberto.wav')
 [y_He_e_a,Fs_He_e_a,bits_He_e_a]=wavread('.\Sons\Heitor_e_aberto.wav')
 [y_Pi_e_a,Fs_Pi_e_a,bits_Pi_e_a]=wavread('.\Sons\Paiva_eaberto.wav')
 
-//I aberti
+//I aberto
 [y_C_i,Fs_C_i,bits_C_i]=wavread('.\Sons\Caique_i_aberto.wav')
 [y_He_i,Fs_He_i,bits_He_i]=wavread('.\Sons\Heitor_i_aberto.wav')
 [y_Pi_i,Fs_Pi_i,bits_Pi_i]=wavread('.\Sons\Paiva_i.wav')
@@ -54,8 +54,7 @@ endfunction
 [y_He_o_a,Fs_He_o_a,bits_He_o_a]=wavread('.\Sons\Heitor_o_aberto.wav')
 [y_Pi_o_a,Fs_Pi_o_a,bits_Pi_o_a]=wavread('.\Sons\Paiva_oaberto.wav')
 
-x = 1:size(y_C_o_a)
-disp(x)
+x = 1:size(y_C_o_a)(2)
 
 scf(0)
 plot(y_C_a_a,x,1)
