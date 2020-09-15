@@ -258,3 +258,17 @@ ylabel('Amplitude')
 legend(['Caique';'Hattori';'Heitor';'Paiva'])
 title(['Espectro de frequência - O fechado'])
 
+scf(14)
+plot2d(frequency_vector_C_aa(1:5000),abs(U_C_aa(1:5000)),1)
+plot2d(frequency_vector_C_af(1:5000),abs(U_C_af(1:5000)),2)
+plot2d(frequency_vector_C_ea(1:5000),abs(U_C_ea(1:5000)),3)
+plot2d(frequency_vector_C_ef(1:5000),abs(U_C_ef(1:5000)),4)
+plot2d(frequency_vector_C_ia(1:5000),abs(U_C_ia(1:5000)),5)
+plot2d(frequency_vector_C_oa(1:5000),abs(U_C_oa(1:5000)),6)
+plot2d(frequency_vector_C_of(1:5000),abs(U_C_of(1:5000)),7)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['A aberto';'A fechado';'E aberto';'E fechado';'I aberto';'O aberto';'O fechado'])
+title(['Espectros de frequência - Sons do Caique'])
+
+
