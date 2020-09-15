@@ -54,17 +54,16 @@ endfunction
 [y_He_o_a]=wavread('.\Sons\Heitor_o_aberto.wav')
 [y_Pi_o_a]=wavread('.\Sons\Paiva_oaberto.wav')
 
-x = 1:(size(y_C_o_a)(2)/Fs)
+x = 1:(size(y_C_o_a)(2))
 
 scf(0)
-plot(y_C_a_a,x,1)
-plot(y_Ha_a_a,x,2)
-plot(y_He_a_a,x,3)
-plot(y_Pi_a_a,x,4)
-//plot(y_Pk_a_a,x,5)
+plot(1:(size(y_C_a_a)(2)),y_C_a_a,1,'r')
+plot(1:(size(y_Ha_a_a)(2)),y_Ha_a_a,2)
+plot(1:(size(y_He_a_a)(2)),y_He_a_a,3)
+plot(1:(size(y_Pi_a_a)(2)),y_Pi_a_a,4)
 xlabel('Tempo (s)')
 ylabel('Amplitude')
-legend(['Caique';'Hattori';'Heitor';'Paiva';'Pavelski'])
+legend(['Caique';'Hattori';'Heitor';'Paiva'])
 title(['Resposta no tempo - A aberto'])
 
 scf(1)
