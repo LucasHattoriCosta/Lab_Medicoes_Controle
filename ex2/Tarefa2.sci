@@ -11,7 +11,50 @@
 //Esta tarefa consiste na captação de sinais de áudio dos membros do grupo através de um aparelho celular. Posteriormente, os sinais são analisados através de comandos da ferramenta Scilab. A fim de evitar erros e desvios associados ao uso de diferentes softwares de sensores, todos os membros do grupo gravaram seus áudios no mesmo aplicativo: Gravador de Voz Fácil. Todos os áudios foram captados com as mesmas configurações: formato wav (como solicitado); taxa de amostragem de 44kHz; supressão de ruído padrão do aparelho (possíveis variações entre os aparelhos); e cancelamento de eco padrão do aparelho (possíveis variações entre os aparelhos).
 //Como solicitado, os membros do grupo captaram o sinal sonoro de si mesmos pronunciando os fonemas abertos (a, é, i, ó), e fechados (â, ê, ô).
 
+//Os gráficos em função do tempo foram apresentados de forma ampliada, entre o intervalo de 2,25s a 2,75s. Isso, pois a frequência dos sinais eram muito elevados e a visualização completa do sinal não traz resultados muito conclusivos. Da mesma forma, os espectros de frequências foram apresentados entre o intervalo reduzido, buscando uma melhor visualização da região que concentra as principais frequeências.
+//A partir dos gráficos de espectro de frequências, podemos estimar as frequências naturais e os harmônicos de cada fonema pronunciado, como apresentado a seguir:
 
+//Valores das frequências naturais e seus harmônicos.
+// A aberto:
+//      Caique: fq = 770 Hz 
+//              harmônicos: h1 = 460 Hz; h2 = 620 Hz ; h3 = 910 Hz
+
+// E aberto:
+//      Caique: fq = 550 Hz
+//              harmônicos: h1 = 270 Hz; h2 = 410 Hz ; h3 = 680 Hz
+
+// I aberto:
+//      Caique: fq = 170 Hz
+//              harmônicos: h1 = 330 Hz; h2 = 500 Hz
+
+// O aberto:
+//      Caique: fq = 640 Hz
+//              harmônicos: h1 = 310 Hz; h2 = 460 Hz ; h3 = 800 Hz
+
+// A fechado:
+//      Caique: fq = 400 Hz
+//              harmônicos: h1 = 140 Hz; h2 = 270 Hz ; h3 = 540 Hz
+
+// E fechado:
+//      Caique: fq = 410 Hz
+//              harmônicos: h1 = 130 Hz; h2 = 270 Hz ; h3 = 540 Hz
+
+// O fechado:
+//      Caique: fq = 400 Hz
+//              harmônicos: h1 = 130 Hz; h2 = 270 Hz ; h3 = 800 Hz
+
+// Para os demais sons obtidos, temos que os valores de frequência naturais variam, devido à individualidade de fala de cada integrante. Os harmônicos, contudo, são análogos, seguindo o padrão de múltiplos que deve ser estabelecido.
+
+//Comparando os sons obtidos, pode-se traçar diferentes tipos de comparações: 
+//
+// 1) Mesma fonema com som aberto ou fechado
+//Para o primeiro tipo, é possível ver nos gráficos, como esperado, que os sons fechados possuem harmônicos e frequências de corte mais baixas, ou seja, sons mais graves. Usando os gráficos 7 e 13 para os sons da letra O, que, mesmo para pessoas diferentes (logo, para afinações e timbres diferentes) as frequências possuem padrões bem distintos, de forma que é possível diferenciar os fonemas a partir das mesmas.
+//
+// 2) Fonemas diferentes para a mesma pessoa
+//Novamente, as diferenças entre sons abertos e fechados se repete de forma consistente, sendo, portanto, possível distinguir se a pessoa está falando um fonema aberto ou fechado (sendo o I aberto um pequena exceção, por apresentar frequência natural e harmônicos mais baixos). Porém, é difícil distinguir os fonemas abertos entre si, assim como os fonemas fechados são muito parecidos entre si. Um outro ponto, exemplificado pelos gráficos 14 e 15 é que é possível diferenciar pessoas diferentes plotando os espectros de potência para diferentes fonemas. No exemplo, um aluno se diferencia do outro por apresentar amplitudes e frequências mais altas.
+//
+// 3) Mesmo fonema para diferentes pessoas
+//Novamente, é possível diferenciar pessoas por níveis diferentes de amplitude e frequências. Os fonemas tendem a terem harmônicos semelhantes mesmo que para pessoas distintas. Algumas exceções são o I aberto, que apresentou harmônicos baixos, o que não era esperado dado que é um fonema aberto, e variação entre as pessoas; e o fonema E fechado também demonstrou frequências distintas entre as pessoas.
 clc
 clear
 disp(pwd())
