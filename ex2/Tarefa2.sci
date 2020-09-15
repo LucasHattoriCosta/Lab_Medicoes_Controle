@@ -55,6 +55,7 @@ endfunction
 [y_Pi_o_a,Fs_Pi_o_a,bits_Pi_o_a]=wavread('.\Sons\Paiva_oaberto.wav')
 
 x = 1:size(y_C_o_a)
+x = x/rate
 disp(x)
 
 scf(0)
