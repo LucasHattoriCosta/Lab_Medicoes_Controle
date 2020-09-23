@@ -8,7 +8,7 @@
 //Lucas Pinheiro Paiva Cavalcante - 10274270
 //Pedro Henrique Pavelski - 10335621
 
-clc
+//clc
 clear
 xdel( winsid() )
 
@@ -25,8 +25,9 @@ function transformada(sinal,rate)
 endfunction
 
 function sinal_filtrado = media_movel(sinal)
-    for i = 4:length(sinal)
-        sinal_filtrado(i) = (sinal(i)+sinal(i-1)+sinal(i-2)+sinal(i-3))/4
+    for k = 4:length(sinal)
+        sinal_filtrado(k) = (sinal(k)+sinal(k-1)+sinal(k-2)+sinal(k-3))/4
+//        sinal_filtrado(k) = sinal(k-1)+(sinal(k)-sinal(k-N))/N
     end
 endfunction
 
