@@ -31,6 +31,14 @@ function sinal_filtrado = media_movel(sinal)
     end
 endfunction
 
+function sinal_filtrado = passa_baixo_trapezoidal(sinal,w,rate)
+    T = 1/rate
+    sinal_filtrado(1) = sinal(1)
+    for k = 2:length(sinal)
+        sinal_filtrado(k) = ((1-(w*T/2))/(1+(w*T/2)))*sinal_filtrado(k-1)+((w*T/2)/(1+(w*T/2)))*(sinal(k-1)+sinal(k))
+    end
+endfunction
+
 rate = 44100 //Hz (frequência de Amostragem)
 
 sinal_la_nota = wavread('.\Gravações\Violao_lá_nota.wav')
@@ -46,7 +54,7 @@ plot(t_la_nota,sinal_la_nota)
 
 //=============================
 
-sinal_la_acorde = wavread('.\Gravações\Violao_lá_acorde.wav')
+sinal_la_acorde = wavread('.\Gravações\Violao_la_nota_v2.wav')
 t_la_acorde = 0:1:length(sinal_la_acorde)-1
 t_la_acorde = t_la_acorde/rate
 
@@ -59,7 +67,7 @@ plot(t_la_acorde,sinal_la_acorde)
 
 //=============================
 
-sinal_la_acorde_filtrado = media_movel(sinal_la_acorde)
+sinal_la_acorde_filtrado = passa_baixo_trapezoidal(sinal_la_acorde,2000,rate)
 
 t_la_acorde_filtrado = 0:1:length(sinal_la_acorde_filtrado)-1
 t_la_acorde_filtrado = t_la_acorde_filtrado/rate
