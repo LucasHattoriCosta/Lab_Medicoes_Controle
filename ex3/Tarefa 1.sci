@@ -19,7 +19,7 @@ function transformada(sinal,rate)
     N = size(sinal,'*')
     frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
     n = size(frequency_vector,'*')
-    plot2d(frequency_vector,abs(U(1:n)),2)
+    plot2d(frequency_vector(1:5000),abs(U(1:5000)),2)
     xlabel('Frequência (Hz)')
     ylabel('Amplitude')
 endfunction
