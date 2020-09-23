@@ -55,6 +55,7 @@
 //
 // 3) Mesmo fonema para diferentes pessoas
 //Novamente, é possível diferenciar pessoas por níveis diferentes de amplitude e frequências. Os fonemas tendem a terem harmônicos semelhantes mesmo que para pessoas distintas. Algumas exceções são o I aberto, que apresentou harmônicos baixos, o que não era esperado dado que é um fonema aberto, e variação entre as pessoas; e o fonema E fechado também demonstrou frequências distintas entre as pessoas.
+
 clc
 clear
 disp(pwd())
@@ -326,5 +327,6 @@ xlabel('Frequência (Hz)')
 ylabel('Amplitude')
 legend(['A aberto';'A fechado';'E aberto';'E fechado';'I aberto';'O aberto';'O fechado'])
 title(['Espectros de frequência - Sons do Heitor'])
+
 
 
