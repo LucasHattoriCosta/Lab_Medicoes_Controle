@@ -49,6 +49,8 @@ endfunction
 
 rate = 44100 //Hz (frequência de Amostragem)
 
+//---------------------------VIOLÃO-------------------------------
+
 sinal_la_nota = wavread('.\Gravações\Violao_lá_nota.wav')
 t_la_nota = 0:1:length(sinal_la_nota)-1
 t_la_nota = t_la_nota/rate
@@ -94,4 +96,67 @@ savewave('.\Gravações\Violao_la_nota_v3_filter.wav',sinal_la_acorde_filtrado,r
 //playsnd(sinal_la_acorde_filtrado,rate)
 
 
+//---------------------------PIANO---------------------------------
+sinal_la_nota_p = wavread('.\Gravações\Piano_la_ruido_agudo.wav')
+t_la_nota_p = 0:1:length(sinal_la_nota_p)-1
+t_la_nota_p = t_la_nota_p/rate
 
+scf(4)
+subplot(211)
+transformada(sinal_la_nota_p,rate)
+title(['Lá piano com Ruído Agudo'])
+subplot(212)
+plot(t_la_nota_p,sinal_la_nota_p)
+
+playsnd(sinal_la_nota_p,rate)
+
+//=============================
+
+sinal_la_acorde_p = wavread('.\Gravações\Piano_acorde_ruido_agudo.wav')
+t_la_acorde_p = 0:1:length(sinal_la_acorde_p)-1
+t_la_acorde_p = t_la_acorde_p/rate
+
+scf(5)
+subplot(211)
+transformada(sinal_la_acorde_p,rate)
+title(['Acorde piano com Ruido Agudo'])
+subplot(212)
+plot(t_la_acorde_p,sinal_la_acorde_p)
+
+//playsnd(sinal_la_acorde_p,rate)
+
+//=============================
+
+sinal_la_acorde_filtrado_p = passa_baixo_backward(sinal_la_acorde_p,1000,rate)
+
+t_la_acorde_filtrado_p = 0:1:length(sinal_la_acorde_filtrado_p)-1
+t_la_acorde_filtrado_p = t_la_acorde_filtrado_p/rate
+
+scf(6)
+subplot(211)
+transformada(sinal_la_acorde_filtrado_p,rate)
+title(['Acorde piano filtrado'])
+subplot(212)
+plot(t_la_acorde_filtrado_p,sinal_la_acorde_filtrado_p)
+
+savewave('.\Gravações\Piano_acorde_ruido_agudo_filtrado.wav',sinal_la_acorde_filtrado_p,rate)
+
+//playsnd(sinal_la_acorde_filtrado_p,rate)
+
+//=============================
+
+sinal_la_nota_filtrado_p = passa_baixo_backward(sinal_la_nota_p,1000,rate)
+
+t_la_nota_filtrado_p = 0:1:length(sinal_la_nota_filtrado_p)-1
+t_la_nota_filtrado_p = t_la_nota_filtrado_p/rate
+
+scf(7)
+subplot(211)
+transformada(sinal_la_nota_filtrado_p,rate)
+title(['Lá piano filtrado'])
+subplot(212)
+plot(t_la_nota_filtrado_p,sinal_la_nota_filtrado_p)
+
+savewave('.\Gravações\Piano_la_ruido_agudo_filtrado.wav',sinal_la_nota_filtrado_p,rate)
+
+playsnd(sinal_la_nota_filtrado_p,rate)
