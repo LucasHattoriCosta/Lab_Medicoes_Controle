@@ -315,5 +315,18 @@ ylabel('Amplitude')
 legend(['A aberto';'A fechado';'E aberto';'E fechado';'I aberto';'O aberto';'O fechado'])
 title(['Espectros de frequência - Sons do Caique'])
 
+scf(15)
+plot2d(frequency_vector_He_aa(1:5000),abs(U_He_aa(1:5000)),1)
+plot2d(frequency_vector_He_af(1:5000),abs(U_He_af(1:5000)),2)
+plot2d(frequency_vector_He_ea(1:5000),abs(U_He_ea(1:5000)),3)
+plot2d(frequency_vector_He_ef(1:5000),abs(U_He_ef(1:5000)),4)
+plot2d(frequency_vector_He_ia(1:5000),abs(U_He_ia(1:5000)),5)
+plot2d(frequency_vector_He_oa(1:5000),abs(U_He_oa(1:5000)),6)
+plot2d(frequency_vector_He_of(1:5000),abs(U_He_of(1:5000)),7)
+xlabel('Frequência (Hz)')
+ylabel('Amplitude')
+legend(['A aberto';'A fechado';'E aberto';'E fechado';'I aberto';'O aberto';'O fechado'])
+title(['Espectros de frequência - Sons do Heitor'])
+
 
 
