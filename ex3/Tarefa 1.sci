@@ -24,6 +24,12 @@ function transformada(sinal,rate)
     ylabel('Amplitude')
 endfunction
 
+function sinal_filtrado = media_movel(sinal)
+    for i = 4:length(sinal)
+        sinal_filtrado(i) = (sinal(i)+sinal(i-1)+sinal(i-2)+sinal(i-3))/4
+    end
+endfunction
+
 rate = 44100 //Hz (frequência de Amostragem)
 
 sinal_la_nota = wavread('.\Gravações\Violao_lá_nota.wav')
@@ -37,7 +43,7 @@ title(['Lá nota'])
 subplot(212)
 plot(t_la_nota,sinal_la_nota)
 
-
+//=============================
 
 sinal_la_acorde = wavread('.\Gravações\Violao_lá_acorde.wav')
 t_la_acorde = 0:1:length(sinal_la_acorde)-1
@@ -50,5 +56,22 @@ title(['Lá acorde'])
 subplot(212)
 plot(t_la_acorde,sinal_la_acorde)
 
+//=============================
 
-//playsnd(sinal,rate)
+sinal_la_acorde_filtrado = media_movel(sinal_la_acorde)
+
+t_la_acorde_filtrado = 0:1:length(sinal_la_acorde_filtrado)-1
+t_la_acorde_filtrado = t_la_acorde_filtrado/rate
+
+scf(3)
+subplot(211)
+transformada(sinal_la_acorde_filtrado,rate)
+title(['Lá acorde'])
+subplot(212)
+plot(t_la_acorde_filtrado,sinal_la_acorde_filtrado)
+
+//playsnd(sinal_la_acorde,rate)
+//playsnd(sinal_la_acorde_filtrado,rate)
+
+
+
