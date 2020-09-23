@@ -62,7 +62,7 @@ plot(t_la_nota,sinal_la_nota)
 
 //=============================
 
-sinal_la_acorde = wavread('.\Gravações\Violao_la_nota_v3.wav')
+sinal_la_acorde = wavread('.\Gravações\teste1.wav')
 t_la_acorde = 0:1:length(sinal_la_acorde)-1
 t_la_acorde = t_la_acorde/rate
 
@@ -75,7 +75,7 @@ plot(t_la_acorde,sinal_la_acorde)
 
 //=============================
 
-sinal_la_acorde_filtrado = passa_baixo_backward(sinal_la_acorde,1500,rate)
+sinal_la_acorde_filtrado = passa_baixo_trapezoidal(sinal_la_acorde,2000,rate)
 
 t_la_acorde_filtrado = 0:1:length(sinal_la_acorde_filtrado)-1
 t_la_acorde_filtrado = t_la_acorde_filtrado/rate
@@ -87,7 +87,7 @@ title(['Lá acorde'])
 subplot(212)
 plot(t_la_acorde_filtrado,sinal_la_acorde_filtrado)
 
-savewave('.\Gravações\Violao_la_nota_v3_filter.wav',sinal_la_acorde_filtrado,rate)
+//savewave('.\Gravações\Violao_la_nota_v3_filter.wav',sinal_la_acorde_filtrado,rate)
 
 
 //playsnd(sinal_la_acorde,rate)
