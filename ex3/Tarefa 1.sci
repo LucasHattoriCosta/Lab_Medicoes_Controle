@@ -19,7 +19,7 @@ function transformada(sinal,rate)
     N = size(sinal,'*')
     frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
     n = size(frequency_vector,'*')
-    plot2d(frequency_vector(1:5000),abs(U(1:5000)),2)
+    plot2d(frequency_vector(1:10000),abs(U(1:10000)),2)
     xlabel('Frequência (Hz)')
     ylabel('Amplitude')
 endfunction
@@ -51,7 +51,7 @@ rate = 44100 //Hz (frequência de Amostragem)
 
 //---------------------------VIOLÃO-------------------------------
 
-sinal_la_nota = wavread('.\Gravações\Violao_lá_nota.wav')
+sinal_la_nota = wavread('.\gravações\Violao_lá_nota.wav')
 t_la_nota = 0:1:length(sinal_la_nota)-1
 t_la_nota = t_la_nota/rate
 
@@ -64,7 +64,7 @@ plot(t_la_nota,sinal_la_nota)
 
 //=============================
 
-sinal_la_acorde = wavread('.\Gravações\teste1.wav')
+sinal_la_acorde = wavread('.\gravações\teste1.wav')
 t_la_acorde = 0:1:length(sinal_la_acorde)-1
 t_la_acorde = t_la_acorde/rate
 
@@ -77,7 +77,7 @@ plot(t_la_acorde,sinal_la_acorde)
 
 //=============================
 
-sinal_la_acorde_filtrado = passa_baixo_trapezoidal(sinal_la_acorde,2000,rate)
+sinal_la_acorde_filtrado = passa_baixo_trapezoidal(sinal_la_acorde,440,rate)
 
 t_la_acorde_filtrado = 0:1:length(sinal_la_acorde_filtrado)-1
 t_la_acorde_filtrado = t_la_acorde_filtrado/rate
@@ -91,13 +91,12 @@ plot(t_la_acorde_filtrado,sinal_la_acorde_filtrado)
 
 //savewave('.\Gravações\Violao_la_nota_v3_filter.wav',sinal_la_acorde_filtrado,rate)
 
-
 //playsnd(sinal_la_acorde,rate)
 //playsnd(sinal_la_acorde_filtrado,rate)
 
 
 //---------------------------PIANO---------------------------------
-sinal_la_nota_p = wavread('.\Gravações\Piano_la_ruido_agudo.wav')
+sinal_la_nota_p = wavread('.\gravações\Piano_la_ruido_agudo.wav')
 t_la_nota_p = 0:1:length(sinal_la_nota_p)-1
 t_la_nota_p = t_la_nota_p/rate
 
@@ -108,11 +107,11 @@ title(['Lá piano com Ruído Agudo'])
 subplot(212)
 plot(t_la_nota_p,sinal_la_nota_p)
 
-playsnd(sinal_la_nota_p,rate)
+//playsnd(sinal_la_nota_p,rate)
 
 //=============================
 
-sinal_la_acorde_p = wavread('.\Gravações\Piano_acorde_ruido_agudo.wav')
+sinal_la_acorde_p = wavread('.\gravações\Piano_acorde_ruido_agudo.wav')
 t_la_acorde_p = 0:1:length(sinal_la_acorde_p)-1
 t_la_acorde_p = t_la_acorde_p/rate
 
@@ -127,7 +126,7 @@ plot(t_la_acorde_p,sinal_la_acorde_p)
 
 //=============================
 
-sinal_la_acorde_filtrado_p = passa_baixo_backward(sinal_la_acorde_p,1000,rate)
+sinal_la_acorde_filtrado_p = passa_baixo_backward(sinal_la_acorde_p,440,rate)
 
 t_la_acorde_filtrado_p = 0:1:length(sinal_la_acorde_filtrado_p)-1
 t_la_acorde_filtrado_p = t_la_acorde_filtrado_p/rate
@@ -139,13 +138,13 @@ title(['Acorde piano filtrado'])
 subplot(212)
 plot(t_la_acorde_filtrado_p,sinal_la_acorde_filtrado_p)
 
-savewave('.\Gravações\Piano_acorde_ruido_agudo_filtrado.wav',sinal_la_acorde_filtrado_p,rate)
+savewave('.\gravações\Piano_acorde_ruido_agudo_filtrado.wav',sinal_la_acorde_filtrado_p,rate)
 
 //playsnd(sinal_la_acorde_filtrado_p,rate)
 
 //=============================
 
-sinal_la_nota_filtrado_p = passa_baixo_backward(sinal_la_nota_p,1000,rate)
+sinal_la_nota_filtrado_p = passa_baixo_backward(sinal_la_nota_p,440,rate)
 
 t_la_nota_filtrado_p = 0:1:length(sinal_la_nota_filtrado_p)-1
 t_la_nota_filtrado_p = t_la_nota_filtrado_p/rate
@@ -157,6 +156,6 @@ title(['Lá piano filtrado'])
 subplot(212)
 plot(t_la_nota_filtrado_p,sinal_la_nota_filtrado_p)
 
-savewave('.\Gravações\Piano_la_ruido_agudo_filtrado.wav',sinal_la_nota_filtrado_p,rate)
+savewave('.\gravações\Piano_la_ruido_agudo_filtrado.wav',sinal_la_nota_filtrado_p,rate)
 
-playsnd(sinal_la_nota_filtrado_p,rate)
+//playsnd(sinal_la_nota_filtrado_p,rate)
