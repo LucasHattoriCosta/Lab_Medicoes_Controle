@@ -20,7 +20,7 @@ function transformada(sinal,rate)
     N = size(sinal,'*')
     frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
     n = size(frequency_vector,'*')
-    plot2d(frequency_vector(1:10000),abs(U(1:10000)),2)
+    plot2d(frequency_vector(1:30000),abs(U(1:30000)),2)
     xlabel('Frequência (Hz)')
     ylabel('Amplitude')
 endfunction
@@ -97,27 +97,21 @@ function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
     title([nome_filtrado])
     subplot(212)
     plot(t_filtrado,sinal_filtrado)
+    // Salva o arquivo de áudio com o filtro
+    savewave('.\gravações\Filtrados\'+nome+'_filtrado.wav',sinal_filtrado,rate)
 endfunction
 
 rate = 44100 //Hz (frequência de Amostragem)
 
 //----------------------------- PIANO ---------------------------------
 
-sistema_de_filtro('.\gravações\Piano_acorde_ruido_agudo.wav',440,rate,'Piano - acorde com ruído agudo',2)
-sistema_de_filtro('.\gravações\Piano_acorde_ruido_grave.wav',440,rate,'Piano - acorde com ruído grave',2)
-sistema_de_filtro('.\gravações\Piano_la.wav'                ,440,rate,'Piano - lá'                    ,2)
-sistema_de_filtro('.\gravações\Piano_la_acorde.wav'         ,440,rate,'Piano - lá acorde'             ,2)
+sistema_de_filtro('.\gravações\Piano_acorde_ruido_agudo.wav',440,rate,'Piano - lá acorde com ruído agudo',2)
 sistema_de_filtro('.\gravações\Piano_la_ruido_agudo.wav'    ,440,rate,'Piano - lá com ruído agudo'    ,2)
-sistema_de_filtro('.\gravações\Piano_la_ruido_grave.wav'    ,440,rate,'Piano - lá com ruído grave'    ,2)
 
 //----------------------------- VIOLÃO ---------------------------------
 
-sistema_de_filtro('.\gravações\Violao_la_acorde_v1.wav',440,rate,'Violão - lá acorde (versão 1)',2)
-sistema_de_filtro('.\gravações\Violao_la_acorde_v2.wav',440,rate,'Violão - lá acorde (versão 2)',2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v1.wav'  ,440,rate,'Violão - nota lá (versão 1)'  ,2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v2.wav'  ,440,rate,'Violão - nota lá (versão 2)'  ,2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v3.wav'  ,440,rate,'Violão - nota lá (versão 3)'  ,2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - nota lá (versão 4)'  ,2)
+sistema_de_filtro('.\gravações\Violao_la_acorde_v2.wav',440,rate,'Violão - lá acorde com ruído agudo',2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - lá com ruído agudo'  ,2)
 
 /*
 //============================= RELATÓRIO ==============================
@@ -150,6 +144,7 @@ com diferentes ruídos e produzidas por dois diferentes instrumentos (violão e 
 // obtidos, além da sensibilidade na captação dos sinais pelo acelerômetro, 
 // não eram previstos pelo grupo.
 
+<<<<<<< Updated upstream
 */
 
 
@@ -263,3 +258,5 @@ savewave('.\gravações\Piano_la_ruido_agudo_filtrado.wav',sinal_la_nota_filtrad
 
 //playsnd(sinal_la_nota_filtrado_p,rate)
 */
+=======
+>>>>>>> Stashed changes
