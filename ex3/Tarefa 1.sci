@@ -61,11 +61,14 @@ function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
         // tipo_de_filtro == 1 => média móvel
         // tipo_de_filtro == 2 => passa baixo trapezoidal
         // tipo_de_filtro == 3 => passa baixo backward
-        
-        
-    sinal = wavread(nome_do_arquivo)
+    
+    sinal = wavread(nome_do_arquivo)  //carrega o arquivo
+    
+    //cria o vetor tempo compatível com o tamanho do sinal
     t = 0:1:length(sinal)-1
     t = t/rate
+    
+    //plot do sinal no tempo e seu espectro de frequência
     scf()
     subplot(211)
     transformada(sinal,rate)
@@ -73,6 +76,7 @@ function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
     subplot(212)
     plot(t,sinal)
     
+    //seleção do tipo de filtro:
     if tipo_de_filtro == 1 then
         sinal_filtrado = media_movel(sinal)
     elseif tipo_de_filtro == 2 then
@@ -81,12 +85,15 @@ function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
         sinal_filtrado = passa_baixo_backward(sinal,w,rate)
     end
     
+    //cria o vetor tempo compatível com o tamanho do sinal filtrado:
     t_filtrado = 0:1:length(sinal_filtrado)-1
     t_filtrado = t_filtrado/rate
-    nome_filtrado = nome+' - filtrado'
+    
+    //plot do sinal filtrado no tempo e seu espectro de frequência
     scf()
     subplot(211)
     transformada(sinal_filtrado,rate)
+    nome_filtrado = nome+' - filtrado'
     title([nome_filtrado])
     subplot(212)
     plot(t_filtrado,sinal_filtrado)
@@ -94,7 +101,7 @@ endfunction
 
 rate = 44100 //Hz (frequência de Amostragem)
 
-//----------------------------- VIOLÃO ---------------------------------
+//----------------------------- PIANO ---------------------------------
 
 sistema_de_filtro('.\gravações\Piano_acorde_ruido_agudo.wav',440,rate,'Piano - acorde com ruído agudo',2)
 sistema_de_filtro('.\gravações\Piano_acorde_ruido_grave.wav',440,rate,'Piano - acorde com ruído grave',2)
@@ -102,6 +109,9 @@ sistema_de_filtro('.\gravações\Piano_la.wav',440,rate,'Piano - lá',2)
 sistema_de_filtro('.\gravações\Piano_la_acorde.wav',440,rate,'Piano - lá acorde',2)
 sistema_de_filtro('.\gravações\Piano_la_ruido_agudo.wav',440,rate,'Piano - lá com ruído agudo',2)
 sistema_de_filtro('.\gravações\Piano_la_ruido_grave.wav',440,rate,'Piano - lá com ruído grave',2)
+
+//----------------------------- VIOLÃO ---------------------------------
+
 sistema_de_filtro('.\gravações\Violao_la_acorde_v1.wav',440,rate,'Violão - lá acorde (versão 1)',2)
 sistema_de_filtro('.\gravações\Violao_la_acorde_v2.wav',440,rate,'Violão - lá acorde (versão 2)',2)
 sistema_de_filtro('.\gravações\Violao_la_nota_v1.wav',440,rate,'Violão - nota lá (versão 1)',2)
