@@ -120,7 +120,31 @@ sistema_de_filtro('.\gravações\Violao_la_nota_v3.wav'  ,440,rate,'Violão - no
 sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - nota lá (versão 4)'  ,2)
 
 
+//============================= RELATÓRIO ==============================
 
+//---------------------------- Experimento -----------------------------
+
+
+//--------------------------- Violão ---------------------------
+
+
+//-------------------------- Piano ---------------------------
+//]
+
+//----------------------------- Conclusão ------------------------------
+// 
+// A partir dos resultados obtidos no experimento descrito e apresentado
+// acima, é possível notar uma consistência relativamente grande nos
+// diferentes ensaios. Apesar de alguns desvios imprevistos, sobretudo
+// nos valores da amplitude inicial, os ensaios se mantiveram consistentes
+// o suficiente para inferir a validade do processo experimental, além de 
+// seus resultados, com uma margem de erro surpreendentemente precisa.
+// 
+// Dito isso, é interessante ressaltar a surpresa provocada no grupo ao se 
+// verificar o alto grau de precisão e sensibilidade do sensor no aparelho 
+// celular utilizado no experimento. O alto grau de precisão dos resultados 
+// obtidos, além da sensibilidade na captação dos sinais pelo acelerômetro, 
+// não eram previstos pelo grupo.
 
 
 
