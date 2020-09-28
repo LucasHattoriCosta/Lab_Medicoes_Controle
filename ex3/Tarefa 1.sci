@@ -53,6 +53,16 @@ function sinal_filtrado = passa_baixo_backward(sinal,w,rate)
 endfunction
 
 function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
+    // nome_do_arquivo == localização do arquivo desejado
+    // w == frequêcia de amostragem (se aplicável)
+    // rate == frequência de amostragem
+    // nome == identificação do sinal (ex: 'Piano - acorde com ruído agudo')
+    // tipo de filtro:
+        // tipo_de_filtro == 1 => média móvel
+        // tipo_de_filtro == 2 => passa baixo trapezoidal
+        // tipo_de_filtro == 3 => passa baixo backward
+        
+        
     sinal = wavread(nome_do_arquivo)
     t = 0:1:length(sinal)-1
     t = t/rate
