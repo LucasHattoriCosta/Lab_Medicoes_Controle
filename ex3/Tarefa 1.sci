@@ -105,19 +105,19 @@ rate = 44100 //Hz (frequência de Amostragem)
 
 sistema_de_filtro('.\gravações\Piano_acorde_ruido_agudo.wav',440,rate,'Piano - acorde com ruído agudo',2)
 sistema_de_filtro('.\gravações\Piano_acorde_ruido_grave.wav',440,rate,'Piano - acorde com ruído grave',2)
-sistema_de_filtro('.\gravações\Piano_la.wav',440,rate,'Piano - lá',2)
-sistema_de_filtro('.\gravações\Piano_la_acorde.wav',440,rate,'Piano - lá acorde',2)
-sistema_de_filtro('.\gravações\Piano_la_ruido_agudo.wav',440,rate,'Piano - lá com ruído agudo',2)
-sistema_de_filtro('.\gravações\Piano_la_ruido_grave.wav',440,rate,'Piano - lá com ruído grave',2)
+sistema_de_filtro('.\gravações\Piano_la.wav'                ,440,rate,'Piano - lá'                    ,2)
+sistema_de_filtro('.\gravações\Piano_la_acorde.wav'         ,440,rate,'Piano - lá acorde'             ,2)
+sistema_de_filtro('.\gravações\Piano_la_ruido_agudo.wav'    ,440,rate,'Piano - lá com ruído agudo'    ,2)
+sistema_de_filtro('.\gravações\Piano_la_ruido_grave.wav'    ,440,rate,'Piano - lá com ruído grave'    ,2)
 
 //----------------------------- VIOLÃO ---------------------------------
 
 sistema_de_filtro('.\gravações\Violao_la_acorde_v1.wav',440,rate,'Violão - lá acorde (versão 1)',2)
 sistema_de_filtro('.\gravações\Violao_la_acorde_v2.wav',440,rate,'Violão - lá acorde (versão 2)',2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v1.wav',440,rate,'Violão - nota lá (versão 1)',2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v2.wav',440,rate,'Violão - nota lá (versão 2)',2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v3.wav',440,rate,'Violão - nota lá (versão 3)',2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav',440,rate,'Violão - nota lá (versão 4)',2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v1.wav'  ,440,rate,'Violão - nota lá (versão 1)'  ,2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v2.wav'  ,440,rate,'Violão - nota lá (versão 2)'  ,2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v3.wav'  ,440,rate,'Violão - nota lá (versão 3)'  ,2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - nota lá (versão 4)'  ,2)
 
 
 
