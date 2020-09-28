@@ -8,13 +8,14 @@
 //Lucas Pinheiro Paiva Cavalcante - 10274270
 //Pedro Henrique Pavelski - 10335621
 
-//clc
+clc
 clear
 xdel( winsid() )
-
 pi = %pi
 
-function transformada(sinal,rate)
+
+function transformada(sinal,rate) 
+//Plota o espectro de frequência para um certo sinal dada a frequência de amostragem
     U = fft(sinal)
     N = size(sinal,'*')
     frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
@@ -25,13 +26,15 @@ function transformada(sinal,rate)
 endfunction
 
 function sinal_filtrado = media_movel(sinal)
+//Implementa o filtro de média móvel em relação ao valor atual e o 3 anteriores
     for k = 4:length(sinal)
         sinal_filtrado(k) = (sinal(k)+sinal(k-1)+sinal(k-2)+sinal(k-3))/4
-//        sinal_filtrado(k) = sinal(k-1)+(sinal(k)-sinal(k-N))/N
     end
 endfunction
 
 function sinal_filtrado = passa_baixo_trapezoidal(sinal,w,rate)
+//Implementa o filtro passa baixo trapexoidal para sim dado sinal, 
+//uma frequência de corte (w) e a frequência de amostragem
     T = 1/rate
     sinal_filtrado(1) = sinal(1)
     for k = 2:length(sinal)
@@ -40,6 +43,8 @@ function sinal_filtrado = passa_baixo_trapezoidal(sinal,w,rate)
 endfunction
 
 function sinal_filtrado = passa_baixo_backward(sinal,w,rate)
+//Implementa o filtro passa baixo trapexoidal para sim dado sinal, 
+//uma frequência de corte (w) e a frequência de amostragem
     T = 1/rate
     sinal_filtrado(1) = sinal(1)
     for k = 2:length(sinal)
@@ -47,10 +52,60 @@ function sinal_filtrado = passa_baixo_backward(sinal,w,rate)
     end
 endfunction
 
+function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
+    sinal = wavread(nome_do_arquivo)
+    t = 0:1:length(sinal)-1
+    t = t/rate
+    scf()
+    subplot(211)
+    transformada(sinal,rate)
+    title([nome])
+    subplot(212)
+    plot(t,sinal)
+    
+    if tipo_de_filtro == 1 then
+        sinal_filtrado = media_movel(sinal)
+    elseif tipo_de_filtro == 2 then
+        sinal_filtrado = passa_baixo_trapezoidal(sinal,w,rate)
+    elseif tipo_de_filtro == 3 then
+        sinal_filtrado = passa_baixo_backward(sinal,w,rate)
+    end
+    
+    t_filtrado = 0:1:length(sinal_filtrado)-1
+    t_filtrado = t_filtrado/rate
+    nome_filtrado = nome+' - filtrado'
+    scf()
+    subplot(211)
+    transformada(sinal_filtrado,rate)
+    title([nome_filtrado])
+    subplot(212)
+    plot(t_filtrado,sinal_filtrado)
+endfunction
+
 rate = 44100 //Hz (frequência de Amostragem)
 
-//---------------------------VIOLÃO-------------------------------
+//----------------------------- VIOLÃO ---------------------------------
 
+sistema_de_filtro('.\gravações\Piano_acorde_ruido_agudo.wav',440,rate,'Piano - lá acorde',2)
+sistema_de_filtro('.\gravações\Piano_acorde_ruido_grave.wav',440,rate,'Piano - lá acorde',2)
+sistema_de_filtro('.\gravações\Piano_La.wav',440,rate,'Piano - lá acorde',2)
+sistema_de_filtro('.\gravações\Piano_La_acorde.wav',440,rate,'Piano - lá acorde',2)
+sistema_de_filtro('.\gravações\Piano_la_ruido_agudo.wav',440,rate,'Piano - lá acorde',2)
+sistema_de_filtro('.\gravações\Piano_la_ruido_grave.wav',440,rate,'Piano - lá acorde',2)
+sistema_de_filtro('.\gravações\Violao_lá_acorde_v2.wav',440,rate,'Violão - lá acorde',2)
+sistema_de_filtro('.\gravações\Violao_la_acorde_v1.wav',440,rate,'Violão - lá acorde',2)
+sistema_de_filtro('.\gravações\Violao_lá_nota_v1.wav',440,rate,'Violão - lá acorde',2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v2.wav',440,rate,'Violão - lá acorde',2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v3.wav',440,rate,'Violão - lá acorde',2)
+sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav',440,rate,'Violão - lá acorde',2)
+
+
+
+
+
+
+
+/*
 sinal_la_nota = wavread('.\gravações\Violao_lá_nota.wav')
 t_la_nota = 0:1:length(sinal_la_nota)-1
 t_la_nota = t_la_nota/rate
@@ -159,3 +214,4 @@ plot(t_la_nota_filtrado_p,sinal_la_nota_filtrado_p)
 savewave('.\gravações\Piano_la_ruido_agudo_filtrado.wav',sinal_la_nota_filtrado_p,rate)
 
 //playsnd(sinal_la_nota_filtrado_p,rate)
+*/
