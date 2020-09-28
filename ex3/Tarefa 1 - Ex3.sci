@@ -119,17 +119,21 @@ sistema_de_filtro('.\gravações\Violao_la_nota_v2.wav'  ,440,rate,'Violão - no
 sistema_de_filtro('.\gravações\Violao_la_nota_v3.wav'  ,440,rate,'Violão - nota lá (versão 3)'  ,2)
 sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - nota lá (versão 4)'  ,2)
 
-
+/*
 //============================= RELATÓRIO ==============================
 
 //---------------------------- Experimento -----------------------------
+Para o presente experimento, o grupo optou por medir gravações de notas musicais, pelos seguintes
+fatores: são sinais cujas frequências de interesse são de fácil identificação e que são facilmente
+reproduzidos em diferentes situações. Assim, para o projeto de filtros, teríamos gravações
+com diferentes ruídos e produzidas por dois diferentes instrumentos (violão e piano) para fazer comparações.
 
 
 //--------------------------- Violão ---------------------------
 
 
 //-------------------------- Piano ---------------------------
-//]
+
 
 //----------------------------- Conclusão ------------------------------
 // 
@@ -146,7 +150,7 @@ sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - no
 // obtidos, além da sensibilidade na captação dos sinais pelo acelerômetro, 
 // não eram previstos pelo grupo.
 
-
+*/
 
 
 /*
