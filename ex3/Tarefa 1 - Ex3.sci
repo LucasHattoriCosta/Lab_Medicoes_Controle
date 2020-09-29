@@ -52,7 +52,7 @@ function sinal_filtrado = passa_baixo_backward(sinal,w,rate)
     end
 endfunction
 
-function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
+function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro,plot_original)
     // nome_do_arquivo == localização do arquivo desejado
     // w == frequêcia de amostragem (se aplicável)
     // rate == frequência de amostragem
@@ -68,20 +68,26 @@ function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
     t = 0:1:length(sinal)-1
     t = t/rate
     
-    //plot do sinal no tempo e seu espectro de frequência
-    scf()
-    subplot(211)
-    transformada(sinal,rate)
-    title([nome])
-    subplot(212)
-    plot(t,sinal)
+    if plot_original == 1 then
+        //plot do sinal no tempo e seu espectro de frequência
+        scf()
+        subplot(211)
+        transformada(sinal,rate)
+        title([nome])
+        subplot(212)
+        plot(t,sinal)
+    end
+        
     
     //seleção do tipo de filtro:
     if tipo_de_filtro == 1 then
+        nome_do_filtro = 'Média Móvel'
         sinal_filtrado = media_movel(sinal)
     elseif tipo_de_filtro == 2 then
+        nome_do_filtro = 'Trapezoidal'
         sinal_filtrado = passa_baixo_trapezoidal(sinal,w,rate)
     elseif tipo_de_filtro == 3 then
+        nome_do_filtro = 'Backwards'
         sinal_filtrado = passa_baixo_backward(sinal,w,rate)
     end
     
@@ -93,7 +99,7 @@ function sistema_de_filtro(nome_do_arquivo,w,rate,nome,tipo_de_filtro)
     scf()
     subplot(211)
     transformada(sinal_filtrado,rate)
-    nome_filtrado = nome+' - filtrado'
+    nome_filtrado = nome+' - filtrado - '+nome_do_filtro
     title([nome_filtrado])
     subplot(212)
     plot(t_filtrado,sinal_filtrado)
@@ -103,15 +109,22 @@ endfunction
 
 rate = 44100 //Hz (frequência de Amostragem)
 
+//------------------ ANÁLISE DOS FILTROS APLICADOS --------------------
+sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - lá com ruído agudo'  ,1,1)
+sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - lá com ruído agudo'  ,2,0)
+sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - lá com ruído agudo'  ,3,0)
+
 //----------------------------- PIANO ---------------------------------
 
-sistema_de_filtro('.\gravações\Piano_acorde_ruido_agudo.wav',440,rate,'Piano - lá acorde com ruído agudo',2)
-sistema_de_filtro('.\gravações\Piano_la_ruido_agudo.wav'    ,440,rate,'Piano - lá com ruído agudo'    ,2)
+sistema_de_filtro('.\gravações\Piano_acorde_ruido_agudo.wav',440,rate,'Piano - lá acorde com ruído agudo',2,1)
+sistema_de_filtro('.\gravações\Piano_la_ruido_agudo.wav'    ,440,rate,'Piano - lá com ruído agudo'    ,2,1)
+
 
 //----------------------------- VIOLÃO ---------------------------------
 
-sistema_de_filtro('.\gravações\Violao_la_acorde_v2.wav',440,rate,'Violão - lá acorde com ruído agudo',2)
-sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - lá com ruído agudo'  ,2)
+sistema_de_filtro('.\gravações\Violao_la_acorde_v2.wav',440,rate,'Violão - lá acorde com ruído agudo',2,1)
+sistema_de_filtro('.\gravações\Violao_la_nota_v4.wav'  ,440,rate,'Violão - lá com ruído agudo'  ,2,1)
+
 
 /*
 //============================= RELATÓRIO ==============================
