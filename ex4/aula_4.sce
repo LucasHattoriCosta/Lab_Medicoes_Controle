@@ -1,15 +1,15 @@
-// Use este programa como ponto de partida.
-// A Tarefa 0 já está pronta, e a Tarefa 1 iniciada.
+//PME3402 - Laboratório de Medição e Controle Discreto / Atividade Aula 2
+//Atividade 3
 
-// Obs.: esse programa foi escrito para o Scilab 5.5.2.
-// Adaptações podem ser necessárias se este programa for usado no Scilab 6.1.
+//Grupo 4 - Integrantes:
+//Caique de Oliveira Kobayashi - 9793461
+//Heitor Fontana de Godoy - 10335677
+//Lucas Hattori Costa - 10335847
+//Lucas Pinheiro Paiva Cavalcante - 10274270
+//Pedro Henrique Pavelski - 10335621
 
-// Importante: os gráficos devem estar em sua própria janela, evitando
-// que a próxima figura se sobreponha à figura anterior, exceto se for esse
-// o objetivo, no caso de se querer fazer comparações dos resultados.
+// -------------------------------- TAREFA 0 -----------------------------------
 
-
-// Tarefa 0
 clear;clf;
 // Parâmetros do motor de corrente contínua:
 J=0.01;
@@ -45,8 +45,13 @@ u=ones(t);
 x0=[0;0;0];
 y=csim(u,t,Gmf,x0);
 
+// -------------------------------- TAREFA 1 -----------------------------------
+
+//   A tarefa 1 foi implementada na forma de função tendo com entrada o 
+// período de amostragem.
+
 function tarefa_1(T)
-    // Tarefa 1
+    
     // Modelo em tempo discreto do motor de corrente contínua usando o
     // segurador de ordem zero (ZOH):
     // T == Período de amostragem
@@ -75,13 +80,17 @@ function tarefa_1(T)
     end
     
     for k = 3:(10/T)
+        // erro = (R(k)-Y(k-1)). Como procura-se seguir um degrau => R = 1
         e(k) = 1-ym(k-1);
         
+        // Equação de diferenças para PID feito através do método do trapézio
         um(k) = um(k-2)+(KP+(T/2)*KI+(2/T)*KD)*e(k)+(T*KI+(-4/T)*KD)*e(k-1)+(-KP+(T/2)*KI+(2/T)*KD)*e(k-2);
         
+        // Equação de diferenças para o modelo em tempo discreto do motor de corrente ontínua:
         ym(k) = -dMD(1)*ym(k-2)-dMD(2)*ym(k-1)+nMD(1)*um(k-2)+nMD(2)*um(k-1);
     end
     
+    // Cria o vetor de tempo correspondente ao período de amostragem:
     for i = 1:(10/T)
         t_discreto(i) = i*T
     end
@@ -96,11 +105,19 @@ function tarefa_1(T)
     xtitle(legenda,'t (s)','y(rad/s)');
 endfunction
 
-tarefa_1(0.01)
-// Equações de diferenças:
-// O restante do programa deve ser desenvolvido pelo grupo.
-// É preciso escrever as equações de diferenças do motor e desenvolver
-// e escrever as equações de diferenças do PID.
-// IMPORTANTE: nas Tarefas 1 e 2 as simulações devem ser feitas por meio de
-// equações de diferenças, não podem ser usadas funções “prontas” do Scilab para
-// simulação de sistemas discretos.
+// Período de amostragem = 0.25 s:
+tarefa_1(0.25) //instável
+
+// Período de amostragem = 0.10 s:
+tarefa_1(0.10) //instável
+
+// Período de amostragem = 0.05 s:
+tarefa_1(0.05) //estável
+
+// Período de amostragem = 0.01 s:
+tarefa_1(0.01) //comportamento similar ao encontrado com o sistema no tempo contínuo
+
+
+// -------------------------------- TAREFA 2 -----------------------------------
+
+
