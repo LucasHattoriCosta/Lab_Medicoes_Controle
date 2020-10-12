@@ -63,8 +63,8 @@ function tarefa_1(T)
     // Simulando o sistema com compensador PID usando as equações de diferenças:
     // Equações de diferenças para o modelo em tempo discreto do motor de corrente
     // contínua:
-    nMD=coeff(numer(GmotorD));
-    dMD=coeff(denom(GmotorD));
+    nMD=coeff(GmotorD.num);
+    dMD=coeff(GmotorD.den);
     n=length(nMD);
     d=length(dMD);
     if d>n then
