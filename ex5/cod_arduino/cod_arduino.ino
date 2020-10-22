@@ -9,9 +9,10 @@
 int IN1 = 8;
 int IN2 = 9;
 int ENA = 10;
-int MotorSpeed=3*255/4;
+int MotorSpeed=255/2.5;
 int i = 0;
 float sine;
+float tempo;
 
 //Inicializa o sensor nos pinos definidos acima
 Ultrasonic ultrasonic(pino_trigger, pino_echo);
@@ -23,50 +24,48 @@ void setup() {
   //Define os pinos como saida
   pinMode(IN1,OUTPUT);
   pinMode(IN2,OUTPUT);
+  pinMode(ENA,OUTPUT);
 
   //Método 1 --> comentar para método 2
-  digitalWrite(IN1,HIGH);
-  digitalWrite(IN2,LOW);
+  digitalWrite(IN1,LOW);
+  digitalWrite(IN2,HIGH);
+  analogWrite(ENA,MotorSpeed);
   
   Serial.println("Lendo dados do sensor...");
 }
 
 void loop() {
-  while(i<=300)
-  //Definição da velocidade do motor --> Método 1
-  sine = sin(i*(3.1415/180.0));
-  MotorSpeed = 3*255/4+int(sine*255.0/4.0);
-  analogWrite(ENA, MotorSpeed);
 
-  //Definição da velocidade do motor --> Método 2
-  //sine = sin(i*(3.1415/180.0));
-  //MotorSpeed = 3*255/4+int(sine*255.0/4.0);
-  //analogWrite(IN1, MotorSpeed);
-  //digitalWrite(IN2, LOW);
-   
+  //Definição da velocidade do motor de 2 em 2
+  sine = sin(2*int(i/100)*(3.1415/180.0));
+  MotorSpeed = 255/2.5+int(sine*255.0/5.0);
+  analogWrite(ENA, MotorSpeed);
+    
   //Le as informacoes do sensor, em cm e pol
-  float cmMsec; // , inMsec; --> tirar comentário para adicionar medida em Polegadas
+  float cmMsec;
   long microsec = ultrasonic.timing();
   cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
-  //inMsec = ultrasonic.convert(microsec, Ultrasonic::IN); --> tirar comentário para adicionar medida em Polegadas
+  tempo=millis();
   //Exibe informacoes no serial monitor
-  Serial.print("Distancia em cm: ");
+  //Serial.print("Distancia (cm): ");
   Serial.print(cmMsec);
-  //Serial.print(" - Distancia em polegadas: "); --> tirar comentário para adicionar medida em Polegadas
-  //Serial.println(inMsec); --> tirar comentário para adicionar medida em Polegadas
-  
+  Serial.print(",");
+  //Serial.print("Velocidade do motor (0 a 255): ");
+  Serial.println(MotorSpeed);
+  Serial.print(",");
+  //Serial.print("Instante (s): ");
+  Serial.println(tempo);
+ 
   /*
-  delay(1000);
   // Mostra informações no monitor ou plotter serial
   Serial.print(y); // y é o nome de uma das variáveis que se deseja apresentar
   Serial.print(",");
   Serial.println(yf); // yf é o nome de outra variável que se deseja apresentar
   // Observe o “ln” no final, indicando que se passa para outra linha. Pode-se jogar na saída serial mais variáveis, se necessário.
-  
   */
 
   i+=1;
   
-  delay(50);
+  delay(5);
   
 }

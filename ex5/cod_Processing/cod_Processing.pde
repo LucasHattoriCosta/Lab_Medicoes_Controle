@@ -4,7 +4,7 @@ PrintWriter output; //Funcionalidade de escrita em arquivos
 void setup() {
 String portName = Serial.list()[0]; //configura a porta serial
 mySerial = new Serial(this, portName, 9600); //Configura a porta serial
-output = createWriter( "data2.txt" ); //Cria o objeto arquivo para gravar os dados
+output = createWriter( "dados_grupo4.txt" ); //Cria o objeto arquivo para gravar os dados
 }
 void draw() { //Mesma coisa que a funçao loop do Arduino
 if (mySerial.available() > 0 ) { //Se receber um valor na porta serial
