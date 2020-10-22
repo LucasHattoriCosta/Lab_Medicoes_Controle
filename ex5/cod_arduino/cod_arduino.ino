@@ -55,14 +55,6 @@ void loop() {
   Serial.print(",");
   //Serial.print("Instante (s): ");
   Serial.println(tempo);
- 
-  /*
-  // Mostra informações no monitor ou plotter serial
-  Serial.print(y); // y é o nome de uma das variáveis que se deseja apresentar
-  Serial.print(",");
-  Serial.println(yf); // yf é o nome de outra variável que se deseja apresentar
-  // Observe o “ln” no final, indicando que se passa para outra linha. Pode-se jogar na saída serial mais variáveis, se necessário.
-  */
 
   i+=1;
   
