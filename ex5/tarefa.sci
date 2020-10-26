@@ -15,26 +15,40 @@ pi = %pi
 
 function transformada(sinal,rate) 
 //Plota o espectro de frequência para um certo sinal dada a frequência de amostragem
+    sinal = detrend(sinal)
     U = fft(sinal)
     N = size(sinal,'*')
     frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
     n = size(frequency_vector,'*')
     scf()
     plot2d(frequency_vector(1:100),abs(U(1:100)),2)
+    xtitle('Espectro de Frequências')
     xlabel('Frequência (Hz)')
     ylabel('Amplitude')
 endfunction
 
 //------------------ ANÁLISE DOS SINAIS OBTIDOS --------------------
 aux=read('.\Sinais_gravados\103.txt',1852,3)
-posicao=aux(:,1)
+posicao1=aux(:,1)
 rate1 = 45.0707 //Hz (frequência de Amostragem)
-transformada(posicao,rate1)
+transformada(posicao1,rate1)
+t1 = 0:1/rate1:(length(posicao1)-1)/rate1
+scf()
+plot2d(t1,posicao1)
+xtitle("Sinal amostrado - Saída de velocidade constante")
+xlabel("Tempo (s)")
+ylabel("Amplitude")
 
 aux2=read('.\Sinais_gravados\seno.txt',1775,3)
-posicao=aux2(:,1)
+posicao2=aux2(:,1)
 rate2 = 46.44044 //Hz (frequência de Amostragem)
-transformada(posicao,rate2)
+transformada(posicao2,rate2)
+t2 = 0:1/rate2:(length(posicao2)-1)/rate2
+scf()
+plot2d(t2,posicao2)
+xtitle("Sinal amostrado - Saída de velocidade senoidal")
+xlabel("Tempo (s)")
+ylabel("Amplitude")
 
 /*
 //============================= RELATÓRIO ==============================
@@ -68,5 +82,21 @@ com variação senoidal em torno da velocidade de 100 (na escala de 0 a 255),
 variando 51 pontos para mais e para menos, seguindo uma variação senoidal.
 
 //------------------------------ Resultados ----------------------------
+Antes de se analisar os resultados, é importante mencionar que, parte das
+dificuldades encontradas em se controlar a posição da bola de isopor ao longo
+do tubo (ou seja, a saída do sistema), se deve, também, à baixa velocidade de
+resposta a estímulos que o sistema possui. Mesmo isso sendo um comportamento
+já esperado, dado que o sistema consiste na excitação de uma bola de isopor
+(pouco densa) através de um fluxo turbulento de vento, em um tubo que promove
+perdas de carga distribuídas, não foi possível realizar o experimento sem que
+houvesse avaria dos dados coletados.
+
+
+
+
+
+O segundo sinal capturado, no qual foi imposto um regime de velocidades
+senoidal e que está 
+
 */
 
