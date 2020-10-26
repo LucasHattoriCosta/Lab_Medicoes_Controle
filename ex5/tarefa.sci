@@ -37,7 +37,7 @@ scf()
 plot2d(t1,posicao1)
 xtitle("Sinal amostrado - Saída de velocidade constante")
 xlabel("Tempo (s)")
-ylabel("Amplitude")
+ylabel("Posição (cm)")
 
 aux2=read('.\Sinais_gravados\seno.txt',1775,3)
 posicao2=aux2(:,1)
@@ -48,7 +48,7 @@ scf()
 plot2d(t2,posicao2)
 xtitle("Sinal amostrado - Saída de velocidade senoidal")
 xlabel("Tempo (s)")
-ylabel("Amplitude")
+ylabel("Posição (cm)")
 
 /*
 //============================= RELATÓRIO ==============================
@@ -81,6 +81,10 @@ velocidade alcançada pelo ventilador). O segundo experimento foi realizado
 com variação senoidal em torno da velocidade de 100 (na escala de 0 a 255),
 variando 51 pontos para mais e para menos, seguindo uma variação senoidal.
 
+Além dos espectros de frequência, foram também plotadas as curvas de posição
+pelo tempo do sinal capturado pois inferiu-se que suas análises eram, também,
+pertinentes e necessárias.
+
 //------------------------------ Resultados ----------------------------
 Antes de se analisar os resultados, é importante mencionar que, parte das
 dificuldades encontradas em se controlar a posição da bola de isopor ao longo
@@ -91,12 +95,41 @@ já esperado, dado que o sistema consiste na excitação de uma bola de isopor
 perdas de carga distribuídas, não foi possível realizar o experimento sem que
 houvesse avaria dos dados coletados.
 
-
-
-
+Para o caso de aplicação de sinal constante, é possível notar, na Janela gráfica 
+número 0, que o espectro de frequências mostra um pico de amplitude para uma frequência
+de aproximadamente 0,05 Hz, muito próxima de 0. Isso é esperado, dado que o sistema 
+possui um sinal constante. Entretanto, ainda é possível notar uma série de picos de
+amplitude não desprezível por todo o eixo das abscissas. Isso pode ser associado à
+presença de erros experimentais referentes à coleta dos dados, ou à própria execução
+do experimento. Uma das explicações possíveis para isso é a de que, como pode ser visto
+em vídeo, uma aplicação de sinal de tensão constante ao ventilador não garante,
+necessariamente, uma velocidade constante dos ventos, nem uma força constante aplicada
+à bolinha pelo arrasto. Dado que o sistema é altamente não linear e, também, sensível,
+as variações imprevistas e imprevisíveis causadas geraram uma série de oscilações da
+bolinha ao longo de tal experimento. Além disso, nota-se, na Janela gráfica número 1, 
+que o gráfico de posição pelo tempo apresenta diversos picos isolados que não condizem
+com o observado durante a realização do experimento, denotando possíveis erros no
+processo de coleta de dados.
 
 O segundo sinal capturado, no qual foi imposto um regime de velocidades
-senoidal e que está 
+senoidal, está representado na Janela 3, com seu Espectro de Frequências se
+encontrando na Janela 2. Nele, percebe-se que, ao invés da onda senoidal "pura"
+que se poderia esperar, revelou-se um sinal cujo ponto central diminuiu com o
+tempo e que apresentou picos de amplitude inconsistentes com o movimento real
+da bolinha. Muito provavelmente em consequência disso, o Espectro de Frequências
+desse sinal, igualmente como o anterior, apresentou um pico acentuado em 0 Hz,
+o que em primeira vista seria incompatível com o observado em vídeo.
 
+De fato, a descida do ponto médio de oscilação do gráfico e os picos de
+amplitude dificultam a interpretação do sinal via FFT. Uma tentativa de mitigar
+o primeiro problema foi por meio da utilização da função detrend(), a qual 
+remove tendências de crescimento lineares dos dados, permitindo que se analise
+com mais clareza a frequência de interesse no espectro. Embora a visualização
+do espectro de frequências tenha melhorado, ainda não foi o suficiente para
+distinguir bem a frequência de interesse. Portanto, o próximo passo para a
+efetiva mitigação desses problemas de aquisição encontra-se justamente no escopo
+da próxima aula: o projeto de um filtro que, além de, a título de ilustração,
+reduzir o ganho em baixa frequência, também pode diminuir a influência dos
+pontos de posição discrepantes observados.
 */
 
