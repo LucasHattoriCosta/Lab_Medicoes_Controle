@@ -42,6 +42,10 @@ function sinal_filtrado = passa_baixo_trapezoidal(sinal,w,rate)
     end
 endfunction
 
+//tempo_anterior = tempo_atual
+//tempo_atual = millis()
+//sinal_filtrado_atual = ((1-(w*T/2))/(1+(w*T/2)))*sinal_filtrado_anterior+((w*T/2)/(1+(w*T/2)))*(sinal_anterior+sinal_atual)
+
 function sinal_filtrado = passa_baixo_backward(sinal,w,rate)
 //Implementa o filtro passa baixo trapexoidal para sim dado sinal, 
 //uma frequência de corte (w) e a frequência de amostragem
