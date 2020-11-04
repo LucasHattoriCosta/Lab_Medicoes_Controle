@@ -13,6 +13,14 @@ int MotorSpeed=255/2.5;
 int i = 0;
 float sine;
 float tempo;
+float tempo_anterior;
+float sinal_atual;
+float sinal_anterior;
+float sinal_filtrado_atual;
+float cmMsec;
+float freq;
+int w = 100;
+float T;
 
 //Inicializa o sensor nos pinos definidos acima
 Ultrasonic ultrasonic(pino_trigger, pino_echo);
@@ -31,30 +39,61 @@ void setup() {
   digitalWrite(IN2,HIGH);
   analogWrite(ENA,MotorSpeed);
   
-  Serial.println("Lendo dados do sensor...");
 }
 
 void loop() {
 
-  //Definição da velocidade do motor de 2 em 2
-  sine = sin(2*int(i/100)*(3.1415/180.0));
-  MotorSpeed = 255/2.5+int(sine*255.0/5.0);
-  analogWrite(ENA, MotorSpeed);
+  //Definição da velocidade senoidal
+  //sine = sin((2*int(i/10)+1)*(3.1415/2));
+  //MotorSpeed = 102.5+int(sine*20);
+  //analogWrite(ENA, MotorSpeed);
+
+  //Definição da velocidade constante
+  analogWrite(ENA, 103);
     
   //Le as informacoes do sensor, em cm e pol
-  float cmMsec;
   long microsec = ultrasonic.timing();
   cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
-  tempo=millis();
+
+
+  //Coleta o primeiro valor:
+  if (i==0){
+      sinal_atual = cmMsec;
+      sinal_filtrado_atual = cmMsec;
+      tempo = millis();
+  }
+
+  if (i>0){
+      tempo_anterior = tempo;
+      tempo = millis();
+      freq = 1/(tempo-tempo_anterior);
+      sinal_anterior = sinal_atual;
+      sinal_atual = cmMsec;
+      
+      //Implementa o filtro passa baixo trapexoidal para sim dado sinal, 
+      //uma frequência de corte (w) e a frequência de amostragem
+      T = 1/freq;
+      //for k = 2:length(sinal)
+      sinal_filtrado_atual = ((1-(w*T/2))/(1+(w*T/2)))*sinal_filtrado_atual+((w*T/2)/(1+(w*T/2)))*(sinal_anterior+sinal_atual);
+      //end
+
+  }
+
   //Exibe informacoes no serial monitor
+  //Serial.print("Velocidade do motor (0 a 255): ");
+  Serial.print(MotorSpeed);
+  Serial.print(",");
   //Serial.print("Distancia (cm): ");
   Serial.print(cmMsec);
   Serial.print(",");
-  //Serial.print("Velocidade do motor (0 a 255): ");
-  Serial.println(MotorSpeed);
-  Serial.print(",");
+  Serial.print(sinal_filtrado_atual);
+  Serial.print(","); 
+  Serial.print(freq);
+  Serial.print(","); 
   //Serial.print("Instante (s): ");
   Serial.println(tempo);
+
+
 
   i+=1;
   
