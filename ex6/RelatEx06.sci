@@ -1,5 +1,5 @@
-//PME3402 - Laboratório de Medição e Controle Discreto / Atividade Aula 5
-//Atividade 5
+//PME3402 - Laboratório de Medição e Controle Discreto / Atividade Aula 6
+//Atividade 6
 
 //Grupo 4 - Integrantes:
 //Caique de Oliveira Kobayashi - 9793461
@@ -21,34 +21,71 @@ function transformada(sinal,rate)
     frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
     n = size(frequency_vector,'*')
     scf()
-    plot2d(frequency_vector(1:100),abs(U(1:100)),2)
+    plot2d(frequency_vector,abs(U(1:n)),2)
     xtitle('Espectro de Frequências')
     xlabel('Frequência (Hz)')
     ylabel('Amplitude')
 endfunction
 
+function sinal_filtrado = passa_baixo_trapezoidal(sinal,w,rate)
+//Implementa o filtro passa baixo trapexoidal para sim dado sinal, 
+//uma frequência de corte (w) e a frequência de amostragem
+    T = 1/rate
+    sinal_filtrado(1) = sinal(1)
+    for k = 2:length(sinal)
+        sinal_filtrado(k) = ((1-(w*T/2))/(1+(w*T/2)))*sinal_filtrado(k-1)+((w*T/2)/(1+(w*T/2)))*(sinal(k-1)+sinal(k))
+    end
+endfunction
+
+function sinal_filtrado = media_movel(sinal)
+//Implementa o filtro de média móvel em relação ao valor atual e o 3 anteriores
+    for k = 4:length(sinal)
+        sinal_filtrado(k) = (sinal(k)+sinal(k-1)+sinal(k-2)+sinal(k-3))/4
+    end
+endfunction
+
 //------------------ ANÁLISE DOS SINAIS OBTIDOS --------------------
-aux=read('.\Sinais_gravados\103.txt',1852,3)
-posicao1=aux(:,1)
-rate1 = 45.0707 //Hz (frequência de Amostragem)
-transformada(posicao1,rate1)
-t1 = 0:1/rate1:(length(posicao1)-1)/rate1
+aux=read('.\Apagar_grupo4_nois\processing_grupo4\cte_103_5_w=2.txt',-1,5)
+n_filtrada=aux(:,2)
+filtrada=aux(:,3)
+rate = 1/0.03 //Hz (frequência de Amostragem)
+t1 = 0:1/rate:(length(filtrada)-1)/rate
+
+//------------------ ANÁLISE DA APLICAÇÃO DE FILTROS------------------
+filtrado_trap=passa_baixo_trapezoidal(n_filtrada,2,rate)
+filtrado_med=media_movel(n_filtrada)
+
+//------------------------ AVALIAÇÃO GRÁFICA -------------------------
+
 scf()
-plot2d(t1,posicao1)
-xtitle("Sinal amostrado - Saída de velocidade constante")
+subplot(221)
+plot2d(t1,n_filtrada)
+xtitle("Sinal amostrado - Saída não filtrada à velocidade constante")
 xlabel("Tempo (s)")
 ylabel("Posição (cm)")
 
-aux2=read('.\Sinais_gravados\seno.txt',1775,3)
-posicao2=aux2(:,1)
-rate2 = 46.44044 //Hz (frequência de Amostragem)
-transformada(posicao2,rate2)
-t2 = 0:1/rate2:(length(posicao2)-1)/rate2
-scf()
-plot2d(t2,posicao2)
-xtitle("Sinal amostrado - Saída de velocidade senoidal")
+subplot(222)
+plot2d(t1,filtrada)
+xtitle("Sinal amostrado - Saída filtrada à velocidade constante")
 xlabel("Tempo (s)")
 ylabel("Posição (cm)")
+
+subplot(223)
+plot2d(t1,filtrado_trap)
+xtitle("Sinal amostrado - Saída com filtro trapezoidal à velocidade constante")
+xlabel("Tempo (s)")
+ylabel("Posição (cm)")
+
+subplot(224)
+plot2d(t1,filtrado_med)
+xtitle("Sinal amostrado - Saída com média móvel à velocidade constante")
+xlabel("Tempo (s)")
+ylabel("Posição (cm)")
+
+transformada(n_filtrada,rate)
+transformada(filtrada,rate)
+transformada(filtrado_trap,rate)
+transformada(filtrado_med,rate)
 
 /*
 //============================= RELATÓRIO ==============================
