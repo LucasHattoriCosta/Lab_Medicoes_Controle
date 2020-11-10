@@ -45,7 +45,7 @@ function sinal_filtrado = media_movel(sinal)
 endfunction
 
 //------------------ ANÁLISE DOS SINAIS OBTIDOS --------------------
-aux=read('.\Apagar_grupo4_nois\processing_grupo4\cte_103_5_w=2.txt',-1,5)
+aux=read('.\EntregaCodigos&Dados\cte_103_5_w=2.txt',-1,5)
 n_filtrada=aux(:,2)
 filtrada=aux(:,3)
 rate = 1/0.03 //Hz (frequência de Amostragem)
@@ -130,50 +130,64 @@ Foram apresentados os espectros de frequência, assim como as curvas de posiçã
 pelo tempo do sinal capturado.
 
 //------------------------------ Resultados ----------------------------
-Antes de se analisar os resultados, é importante mencionar que, parte das
-dificuldades encontradas em se controlar a posição da bola de isopor ao longo
-do tubo (ou seja, a saída do sistema), se deve, também, à baixa velocidade de
-resposta a estímulos que o sistema possui. Mesmo isso sendo um comportamento
-já esperado, dado que o sistema consiste na excitação de uma bola de isopor
-(pouco densa) através de um fluxo turbulento de vento, em um tubo que promove
-perdas de carga distribuídas, não foi possível realizar o experimento sem que
-houvesse avaria dos dados coletados.
+Como visto no Exercício 05 anterior, encontrou-se dificuldade de realizar o 
+controle da altura da bolinha a partir do controle dos estímulos do sistema.
+Isso se deu, presumiu-se, pela natureza de baixa velocidade de resposta do 
+sistema e instabilidade no fluxo de vento. Entretanto, é possível adiantar 
+que, a partir da aplicação dos filtros na captação dos dados de estímulo 
+constante, os resultados se mostraram muito mais sólidos e condizentes com 
+o observado do que os vistos no Exercício 05. Como concluído no Exercício 
+anterior, para reduzir o ganho em altas frequências e facilitar a distinção 
+da frequência de interesse, foi projetado dois filtros, um trapezoidal passa
+baixas e um de média móvel.
 
-Para o caso de aplicação de sinal constante, é possível notar, na Janela gráfica 
-número 0, que o espectro de frequências mostra um pico de amplitude para uma frequência
-de aproximadamente 0,05 Hz, muito próxima de 0. Isso é esperado, dado que o sistema 
-possui um sinal constante. Entretanto, ainda é possível notar uma série de picos de
-amplitude não desprezível por todo o eixo das abscissas. Isso pode ser associado à
-presença de erros experimentais referentes à coleta dos dados, ou à própria execução
-do experimento. Uma das explicações possíveis para isso é a de que, como pode ser visto
-em vídeo, uma aplicação de sinal de tensão constante ao ventilador não garante,
-necessariamente, uma velocidade constante dos ventos, nem uma força constante aplicada
-à bolinha pelo arrasto. Dado que o sistema é altamente não linear e, também, sensível,
-as variações imprevistas e imprevisíveis causadas geraram uma série de oscilações da
-bolinha ao longo de tal experimento. Além disso, nota-se, na Janela gráfica número 1, 
-que o gráfico de posição pelo tempo apresenta diversos picos isolados que não condizem
-com o observado durante a realização do experimento, denotando possíveis erros no
-processo de coleta de dados.
+Os gráficos plotados pelo programa e dados em questão, em suas respectivas
+janelas, são:
+Janela 0: Sinais amostrados, com e sem filtragem
+Janela 1: Espectro de frequência para o caso sem filtragem
+Janela 2: Espectro de frequência para o filtro do arduino
+Janela 3: Espectro de frequência para o filtro trapezoidal
+Janela 4: Espectro de frequência para o filtro média móvel
 
-O segundo sinal capturado, no qual foi imposto um regime de velocidades
-senoidal, está representado na Janela 3, com seu Espectro de Frequências se
-encontrando na Janela 2. Nele, percebe-se que, ao invés da onda senoidal "pura"
-que se poderia esperar, revelou-se um sinal cujo ponto central diminuiu com o
-tempo e que apresentou picos de amplitude inconsistentes com o movimento real
-da bolinha. Muito provavelmente em consequência disso, o Espectro de Frequências
-desse sinal, igualmente como o anterior, apresentou um pico acentuado em 0 Hz,
-o que em primeira vista seria incompatível com o observado em vídeo.
+A Janela 1 mostra o espectro de frequência do sinal obtido pelo Arduino sem 
+a aplicação do filtro. Como já citado anteriormente, o sinal apresenta grandes 
+amplitudes para baixas frequências e um ruído cuja média é por volta da amplitude 
+100 para frequências acima de 2 Hz. Ao aplicar o filtro de média móvel pelo 
+método trapezoidal diretamente no Arduino com uma frequência de corte de 2 Hz, 
+obteve-se o sinal da Janela 2. Nota-se assim, que o filtro não foi eficiente para 
+atenuar o ruído.
 
-De fato, a descida do ponto médio de oscilação do gráfico e os picos de
-amplitude dificultam a interpretação do sinal via FFT. Uma tentativa de mitigar
-o primeiro problema foi por meio da utilização da função detrend(), a qual 
-remove tendências de crescimento lineares dos dados, permitindo que se analise
-com mais clareza a frequência de interesse no espectro. Embora a visualização
-do espectro de frequências tenha melhorado, ainda não foi o suficiente para
-distinguir bem a frequência de interesse. Portanto, o próximo passo para a
-efetiva mitigação desses problemas de aquisição encontra-se justamente no escopo
-da próxima aula: o projeto de um filtro que, além de, a título de ilustração,
-reduzir o ganho em baixa frequência, também pode diminuir a influência dos
-pontos de posição discrepantes observados.
+A Janela 3 mostra o sinal filtrado pelo programa desenvolvido no SciLab. É 
+possível notar de prontidão que esse filtro é capaz de filtrar o sinal para 
+frequências maiores que 2 Hz, desempenhando assim bem sua função de atenuar 
+os ruídos do sinal.Esperava-se que o sinal da Janela 2 (filtro implementado 
+no Arduino) fosse similar ao da Janela 3 (filtro no Scilab), porém se mostraram 
+bem diferentes. De alguma forma, houve algum erro quando o filtro foi traduzido 
+do SciLab para a linguagem do Arduino. Por fim, o sinal obtido através do filtro 
+implementado no SciLab mostra que é possível se obter no arduino um filtro 
+eficiente que atenua ruídos.
+
+Um dos filtros digitais implementados foi o filtro de média móvel, tal qual 
+foi desenvolvido pelo grupo para a Tarefa 3. Na Janela 0, estão representadas 
+as saídas filtradas. No quadrante inferior direito, pode-se ver o impacto do 
+filtro de média móvel, que atenua os valores “outliers”, que são muito mais 
+altos que os demais. Assim, o formato da saída é mais constante, o que é 
+condizente com a interpretação física do experimento. Ainda, na Janela 4, 
+vê-se o espectro de frequência do sinal com tal filtro. Novamente, por atenuar 
+os valores “outliers”, vê-se que a amplitude do sinal em frequências mais altas 
+também foi atenuada se comparada com o sinal original ou ainda com o sinal 
+obtido pelo Arduino. Apesar disso, em comparação com o sinal obtido pelo 
+filtro trapezoidal, apresenta amplitudes mais altas nas frequências maiores 
+que 1 Hz, de forma que o trapezoidal pode ser considerado um filtro mais 
+adequado ao experimento.
+
+Em ambos os casos, a redução do ruído presente no sinal original favorece 
+a realização da FFT, na medida em que o aproxima do sinal constante 
+esperado, embora ainda apresentem uma notória linha de tendência não horizontal, 
+mas que pode ser bastante atenuada pela função detrend(), já apresentada no 
+exercício anterior. Com isso, pode-se de fato verificar a distinção pretendida 
+relativa à baixa frequência de interesse em relação ao seu entorno, conforme 
+observado nas Janelas 3 e 4 em comparação ao sinal original da Janela 1, à 
+medida em que a frequência vai aumentando.
 */
 
