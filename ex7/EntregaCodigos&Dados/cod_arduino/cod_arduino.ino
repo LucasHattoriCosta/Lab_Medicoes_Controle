@@ -14,13 +14,19 @@ int i = 0;
 float sine;
 float tempo;
 float tempo_anterior;
-float sinal_atual;
-float sinal_anterior;
-float sinal_filtrado_atual;
-float cmMsec;
+float pos_atual;
+float vel_atual=103.5;
+float vel_anterior;
+float vel_anterior_anterior;
 float freq;
 int w = 2;
-float T;
+float T = 0.03;
+float e_atual;
+float e_anterior;
+float e_anterior_anterior;
+float KI = 0;
+float KP = 0;
+float KD = 0;
 
 //Inicializa o sensor nos pinos definidos acima
 Ultrasonic ultrasonic(pino_trigger, pino_echo);
@@ -47,15 +53,30 @@ void loop() {
   //sine = sin((2*int(i/10)+1)*(3.1415/2));
   //MotorSpeed = 102.5+int(sine*20);
   //analogWrite(ENA, MotorSpeed);
-
-  //Definição da velocidade constante
-  analogWrite(ENA, 103.5);
     
   //Le as informacoes do sensor, em cm e pol
   long microsec = ultrasonic.timing();
-  cmMsec = ultrasonic.convert(microsec, Ultrasonic::CM);
+  pos_atual = ultrasonic.convert(microsec, Ultrasonic::CM);
+
+  if (i==0){
+    vel_anterior_anterior = 0;
+    vel_anterior = 0;
+    e_anterior_anterior = 0;
+    e_anterior = 0;
+  }
 
 
+  if (i>0){
+    e_atual = 30-pos_atual;
+    vel_atual = vel_anterior_anterior+(KP+(T/2)*KI+(2/T)*KD)*e_atual+(T*KI+(-4/T)*KD)*e_anterior+(-KP+(T/2)*KI+(2/T)*KD)*e_anterior_anterior;
+  
+    vel_anterior_anterior = vel_anterior;
+    vel_anterior = vel_atual;
+    e_anterior_anterior = e_anterior;
+    e_anterior = e_atual;
+  }
+
+/*
   //Coleta o primeiro valor:
   if (i==0){
       sinal_atual = cmMsec;
@@ -76,23 +97,22 @@ void loop() {
       //for k = 2:length(sinal)
       sinal_filtrado_atual = ((1-(w*T/2))/(1+(w*T/2)))*sinal_filtrado_atual+((w*T/2)/(1+(w*T/2)))*(sinal_anterior+sinal_atual);
       //end
-
   }
+*/
 
   //Exibe informacoes no serial monitor
   //Serial.print("Velocidade do motor (0 a 255): ");
-  Serial.print(MotorSpeed);
+  Serial.print(vel_atual);
   Serial.print(",");
   //Serial.print("Distancia (cm): ");
-  Serial.print(cmMsec);
+  Serial.print(pos_atual);
   Serial.print(",");
-  Serial.print(sinal_filtrado_atual);
-  Serial.print(","); 
-  Serial.print(freq);
-  Serial.print(","); 
+  Serial.println(e_atual); 
   //Serial.print("Instante (s): ");
-  Serial.println(tempo);
+  //Serial.println(tempo);
 
+  //Definição da velocidade constante
+  analogWrite(ENA, vel_atual);
 
 
   i+=1;
