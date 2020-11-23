@@ -63,13 +63,45 @@ void loop() {
     vel_anterior = 0;
     e_anterior_anterior = 0;
     e_anterior = 0;
+    tempo = millis();
+
   }
 
 
   if (i>0){
+    tempo_anterior = tempo;    
+    tempo = millis();
+    freq = 1/(tempo-tempo_anterior);
+    T = 1/freq;
+
     e_atual = 30-pos_atual;
-    vel_atual = vel_anterior_anterior+(KP+(T/2)*KI+(2/T)*KD)*e_atual+(T*KI+(-4/T)*KD)*e_anterior+(-KP+(T/2)*KI+(2/T)*KD)*e_anterior_anterior;
-  
+    //vel_atual = vel_anterior_anterior+(KP+(T/2)*KI+(2/T)*KD)*e_atual+(T*KI+(-4/T)*KD)*e_anterior+(-KP+(T/2)*KI+(2/T)*KD)*e_anterior_anterior;
+    vel_atual = vel_anterior+(KP+T*KI+(1/T)*KD)*e_atual-(KP+2*KD/T)*e_anterior+(KD/T)*e_anterior_anterior;
+
+    if (vel_atual>255){
+      vel_atual=255;
+      }
+    if (vel_atual<0){
+      vel_atual=0;
+      }
+
+    //Exibe informacoes no serial monitor
+    Serial.print(vel_atual);
+    Serial.print(",");
+    Serial.print(vel_anterior);
+    Serial.print(",");
+    Serial.print(vel_anterior_anterior);
+    Serial.print(",");
+    Serial.print(pos_atual);
+    Serial.print(",");
+    Serial.print(T);
+    Serial.print(",");
+    Serial.print(e_atual);
+    Serial.print(",");
+    Serial.print(e_anterior);
+    Serial.print(",");
+    Serial.println(e_anterior_anterior); 
+    
     vel_anterior_anterior = vel_anterior;
     vel_anterior = vel_atual;
     e_anterior_anterior = e_anterior;
@@ -99,25 +131,6 @@ void loop() {
       //end
   }
 */
-
-  //Exibe informacoes no serial monitor
-  //Serial.print("Velocidade do motor (0 a 255): ");
-  Serial.print(vel_atual);
-  Serial.print(",");
-  Serial.print(vel_anterior);
-  Serial.print(",");
-  Serial.print(vel_anterior_anterior);
-  Serial.print(",");
-  //Serial.print("Distancia (cm): ");
-  Serial.print(pos_atual);
-  Serial.print(",");
-  Serial.print(e_atual);
-  Serial.print(",");
-  Serial.print(e_anterior);
-  Serial.print(",");
-  Serial.println(e_anterior_anterior); 
-  //Serial.print("Instante (s): ");
-  //Serial.println(tempo);
 
   //Definição da velocidade constante
   analogWrite(ENA, vel_atual);
