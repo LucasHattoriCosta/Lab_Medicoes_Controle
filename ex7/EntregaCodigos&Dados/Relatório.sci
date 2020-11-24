@@ -21,34 +21,104 @@ function transformada(sinal,rate)
     frequency_vector = rate*(0:(N/2))/N; //associated frequency vector
     n = size(frequency_vector,'*')
     scf()
-    plot2d(frequency_vector(1:100),abs(U(1:100)),2)
+    plot2d(frequency_vector,abs(U(1:n)),2)
     xtitle('Espectro de Frequências')
     xlabel('Frequência (Hz)')
     ylabel('Amplitude')
 endfunction
 
 //------------------ ANÁLISE DOS SINAIS OBTIDOS --------------------
-aux=read('.\Sinais_gravados\103.txt',1852,3)
-posicao1=aux(:,1)
-rate1 = 45.0707 //Hz (frequência de Amostragem)
-transformada(posicao1,rate1)
+rate1 = 1/0.05 //Hz (frequência de Amostragem)
+
+//aux=read('.\EntregaCodigos&Dados\cte_103_5_w=2.txt',-1,5)
+//KP=1 KI=1 KD=1 - Referência: 30cm
+aux=read('.\EntregaCodigos&Dados\1,1,1.txt',-1,3)
+posicao1=aux(:,2)
 t1 = 0:1/rate1:(length(posicao1)-1)/rate1
+
+//KP=1 KI=1.4 KD=0.6 - Referência: 30cm
+aux=read('.\EntregaCodigos&Dados\muito_bom_1,1_4,0_6__30cm.txt',-1,4)
+posicao2=aux(:,4)
+t2 = 0:1/rate1:(length(posicao2)-1)/rate1
+
+//KP=1 KI=1.4 KD=0.6 - Referência: 20cm
+aux=read('.\EntregaCodigos&Dados\muito_bom_20cm.txt',-1,4)
+posicao3=aux(:,4)
+t3 = 0:1/rate1:(length(posicao3)-1)/rate1
+
+//KP=1 KI=1.4 KD=0.6 - Referência: 40cm
+aux=read('.\EntregaCodigos&Dados\muito_bom_40cm.txt',-1,4)
+posicao4=aux(:,4)
+t4 = 0:1/rate1:(length(posicao4)-1)/rate1
+
+//KP=5 KI=1.5 KD=1 - Referência: 30cm
+aux=read('.\EntregaCodigos&Dados\excelente_30cm.txt',-1,4)
+posicao5=aux(:,4)
+t5 = 0:1/rate1:(length(posicao5)-1)/rate1
+
+//KP=5 KI=1.5 KD=1 - Referência: 20cm
+aux=read('.\EntregaCodigos&Dados\excelente_20cm.txt',-1,4)
+posicao6=aux(:,4)
+t6 = 0:1/rate1:(length(posicao6)-1)/rate1
+
+//KP=5 KI=1.5 KD=1 - Referência: 40cm
+aux=read('.\EntregaCodigos&Dados\excelente_5,1_5,1__40cm.txt',-1,4)
+posicao7=aux(:,4)
+t7 = 0:1/rate1:(length(posicao7)-1)/rate1
+
+//------------------------ AVALIAÇÃO GRÁFICA -------------------------
 scf()
 plot2d(t1,posicao1)
-xtitle("Sinal amostrado - Saída de velocidade constante")
+xtitle("Sinal amostrado - KP=1 KI=1 KD=1 - Referência: 30cm")
 xlabel("Tempo (s)")
 ylabel("Posição (cm)")
 
-aux2=read('.\Sinais_gravados\seno.txt',1775,3)
-posicao2=aux2(:,1)
-rate2 = 46.44044 //Hz (frequência de Amostragem)
-transformada(posicao2,rate2)
-t2 = 0:1/rate2:(length(posicao2)-1)/rate2
 scf()
+subplot(221)
 plot2d(t2,posicao2)
-xtitle("Sinal amostrado - Saída de velocidade senoidal")
+xtitle("Sinal amostrado - KP=1 KI=1.4 KD=0.6 - Referência: 30cm")
 xlabel("Tempo (s)")
 ylabel("Posição (cm)")
+
+subplot(222)
+plot2d(t3,posicao3)
+xtitle("Sinal amostrado - KP=1 KI=1.4 KD=0.6 - Referência: 20cm")
+xlabel("Tempo (s)")
+ylabel("Posição (cm)")
+
+subplot(223)
+plot2d(t4,posicao4)
+xtitle("Sinal amostrado - KP=1 KI=1.4 KD=0.6 - Referência: 40cm")
+xlabel("Tempo (s)")
+ylabel("Posição (cm)")
+
+scf()
+subplot(221)
+plot2d(t5,posicao5)
+xtitle("Sinal amostrado - KP=5 KI=1.5 KD=1 - Referência: 30cm")
+xlabel("Tempo (s)")
+ylabel("Posição (cm)")
+
+subplot(222)
+plot2d(t6,posicao6)
+xtitle("Sinal amostrado - KP=5 KI=1.5 KD=1 - Referência: 20cm")
+xlabel("Tempo (s)")
+ylabel("Posição (cm)")
+
+subplot(223)
+plot2d(t7,posicao7)
+xtitle("Sinal amostrado - KP=5 KI=1.5 KD=1 - Referência: 40cm")
+xlabel("Tempo (s)")
+ylabel("Posição (cm)")
+
+
+transformada(posicao1,rate1)
+transformada(posicao2,rate1)
+transformada(posicao3,rate1)
+transformada(posicao4,rate1)
+transformada(posicao5,rate1)
+transformada(posicao6,rate1)
+transformada(posicao7,rate1)
 
 /*
 //============================= RELATÓRIO ==============================
