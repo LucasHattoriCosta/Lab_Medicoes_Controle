@@ -1,5 +1,5 @@
-//PME3402 - Laboratório de Medição e Controle Discreto / Atividade Aula 5
-//Atividade 5
+//PME3402 - Laboratório de Medição e Controle Discreto / Atividade Aula 7
+//Atividade 7
 
 //Grupo 4 - Integrantes:
 //Caique de Oliveira Kobayashi - 9793461
